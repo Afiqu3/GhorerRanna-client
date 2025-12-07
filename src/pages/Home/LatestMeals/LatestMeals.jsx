@@ -109,7 +109,7 @@ const LatestMeals = () => {
         </div>
 
         <div className="mt-10 text-center">
-          <Link to={'/meals'} target="_parent" className="bg-secondary text-[#0F172B] px-4 py-2 rounded-full font-semibold hover:bg-[#ffb73a] transition-all">
+          <Link to={'/meals'} target="_parent" className="bg-secondary text-primary px-4 py-2 rounded-full font-semibold hover:bg-[#ffb73a] transition-all">
             See All Meals
           </Link>
         </div>
