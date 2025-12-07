@@ -121,7 +121,7 @@ const Navbar = () => {
       <div
         className={`fixed top-0 z-50 w-full transition-all duration-800 ease-in-out ${
           scrolled
-            ? 'bg-primary/95 shadow-lg backdrop-blur translate-y-2 lg:rounded-full max-w-6xl px-10'
+            ? 'bg-primary/95 shadow-lg backdrop-blur translate-y-2 lg:rounded-full sm:max-w-6xl sm:px-10'
             : 'bg-primary translate-y-0 scale-100'
         }`}
       >
