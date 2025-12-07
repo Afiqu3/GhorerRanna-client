@@ -5,12 +5,12 @@ import {
   FaLinkedin,
   FaMapMarkerAlt,
   FaPhoneAlt,
-  FaEnvelope,
 } from 'react-icons/fa';
 import { SiX } from 'react-icons/si';
 import logoImg from '../../../assets/logo.png';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
+import { IoMail } from 'react-icons/io5';
 
 const Footer = () => {
   const socialLinks = [
@@ -46,7 +46,6 @@ const Footer = () => {
     <footer className="relative bg-primary text-gray-300 pt-15 border-t border-white/10 sm:[clip-path:polygon(0_0%,100%_25%,100%_100%,0_100%)] [clip-path:polygon(0_0%,100%_15%,100%_100%,0_100%)]">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-          
           {/* Brand Section */}
           <motion.div
             className="col-span-1 lg:col-span-2"
@@ -55,17 +54,23 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3">
-              <img className="h-12 w-12 object-contain" src={logoImg} alt="GhorerRanna Logo" />
+              <img
+                className="h-12 w-12 object-contain"
+                src={logoImg}
+                alt="GhorerRanna Logo"
+              />
               <div>
                 <h3 className="text-white text-xl font-bold">GhorerRanna</h3>
-                <p className="text-xs text-gray-400">Fresh Homemade Food Near You</p>
+                <p className="text-xs text-gray-400">
+                  Fresh Homemade Food Near You
+                </p>
               </div>
             </div>
 
             <p className="mt-4 text-sm text-gray-300/90 leading-6">
-              GhorerRanna connects home cooks with food lovers looking for fresh,
-              affordable, and hygienic meals prepared in local kitchens — straight from 
-              their home to your plate!
+              GhorerRanna connects home cooks with food lovers looking for
+              fresh, affordable, and hygienic meals prepared in local kitchens —
+              straight from their home to your plate!
             </p>
 
             <div className="mt-6 flex items-center gap-3">
@@ -85,7 +90,11 @@ const Footer = () => {
           </motion.div>
 
           {/* Quick Links */}
-          <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <h4 className="text-white font-semibold mb-3">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               {quickLinks.map(([name, link]) => (
@@ -99,7 +108,11 @@ const Footer = () => {
           </motion.div>
 
           {/* Support */}
-          <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <h4 className="text-white font-semibold mb-3">Support</h4>
             <ul className="space-y-2 text-sm">
               {supportLinks.map(([name, link]) => (
@@ -113,7 +126,11 @@ const Footer = () => {
           </motion.div>
 
           {/* Contact & Hours */}
-          <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <h4 className="text-white font-semibold mb-3">Contact Us</h4>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
@@ -121,8 +138,8 @@ const Footer = () => {
                 <span>+880 1400 000 000</span>
               </li>
               <li className="flex items-center gap-2">
-                <FaEnvelope className="w-4 h-4 text-secondary" />
-                <span>support@ghorerranna.com</span>
+                <IoMail className="w-4 h-4 text-secondary" />
+                <span>gr@gmail.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <FaMapMarkerAlt className="w-4 h-4 text-secondary" />
@@ -130,9 +147,11 @@ const Footer = () => {
               </li>
             </ul>
 
-            <h4 className="text-white font-semibold mt-5 mb-2 text-sm">Working Hours</h4>
+            <h4 className="text-white font-semibold mt-5 mb-2 text-sm">
+              Working Hours
+            </h4>
             <p className="text-xs text-gray-400 leading-5">
-              Sat – Thu: 10:00 AM – 10:00 PM <br />
+              Sat - Thu: 10:00 AM - 10:00 PM <br />
               Friday: Closed (Family Day)
             </p>
           </motion.div>
@@ -143,13 +162,21 @@ const Footer = () => {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <p>
-            © {new Date().getFullYear()} <span className="text-secondary font-semibold">GhorerRanna</span> — All rights reserved.
+            © {new Date().getFullYear()}{' '}
+            <span className="text-secondary font-semibold">GhorerRanna</span> —
+            All rights reserved.
           </p>
 
           <div className="flex items-center gap-6">
-            <Link to="/privacy" className="hover:text-secondary transition">Privacy</Link>
-            <Link to="/terms" className="hover:text-secondary transition">Terms</Link>
-            <Link to="/cookies" className="hover:text-secondary transition">Cookies</Link>
+            <Link to="/privacy" className="hover:text-secondary transition">
+              Privacy
+            </Link>
+            <Link to="/terms" className="hover:text-secondary transition">
+              Terms
+            </Link>
+            <Link to="/cookies" className="hover:text-secondary transition">
+              Cookies
+            </Link>
           </div>
         </div>
       </div>

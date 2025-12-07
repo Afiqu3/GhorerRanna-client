@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Links from './Links';
 import { IoIosMenu } from 'react-icons/io';
 import { TbXboxXFilled } from 'react-icons/tb';
-import { Link, NavLink, useNavigate } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import './links.css';
 import { FiLogIn, FiLogOut } from 'react-icons/fi';
 import { FaUserPlus } from 'react-icons/fa6';
 import { FaUser } from 'react-icons/fa';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'motion/react';
 import logoImg from '../../../assets/logo.png';
 // import useAuth from '../../hooks/useAuth';
@@ -116,11 +117,11 @@ const Navbar = () => {
   };
 
   return (
-    <section>
+    <section className='flex justify-center'>
       <div
-        className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-in-out ${
+        className={`fixed top-0 z-50 w-full transition-all duration-800 ease-in-out ${
           scrolled
-            ? 'bg-primary/95 shadow-lg backdrop-blur translate-y-2 lg:rounded-full'
+            ? 'bg-primary/95 shadow-lg backdrop-blur translate-y-2 lg:rounded-full max-w-6xl px-10'
             : 'bg-primary translate-y-0 scale-100'
         }`}
       >
