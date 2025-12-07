@@ -77,7 +77,7 @@ const Banner = () => {
           <motion.button
             onClick={() => navigate('/meals')}
             whileTap={{ scale: 0.95 }}
-            className="text-black my-btn rounded-full cursor-pointer"
+            className="text-black my-btn sm:rounded-full cursor-pointer"
           >
             Explore Menu
           </motion.button>
