@@ -35,7 +35,8 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full mx-auto max-w-sm shrink-0">
+    <section className="w-full mx-auto max-w-sm shrink-0">
+      <title>Login-GhorerRanna</title>
       <h3 className="text-3xl font-extrabold">Welcome back</h3>
       <p className="">
         Login with <span className="text-secondary">GhorerRanna</span>
@@ -96,7 +97,7 @@ const Login = () => {
       </form>
 
       <SocialLogin></SocialLogin>
-    </div>
+    </section>
   );
 };
 

@@ -74,6 +74,7 @@ const Register = () => {
 
   return (
     <div className="w-full max-w-md mx-auto shrink-0">
+      <title>Register-GhorerRanna</title>
       <h3 className="text-3xl font-extrabold">Create an Account</h3>
       <p className="">
         Register with <span className="text-secondary">GhorerRanna</span>
