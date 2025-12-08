@@ -37,7 +37,7 @@ const DashboardLayout = () => {
               <path d="M14 10l2 2l-2 2"></path>
             </svg>
           </label>
-          <div className="px-4">Zap Shift Dashboard</div>
+          <div className="px-4">GhorerRanna Dashboard</div>
         </nav>
         {/* Page content here */}
         <Outlet></Outlet>
