@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 const instance = axios.create({
-  baseURL: 'https://jobify-api-server.vercel.app',
+  baseURL: 'http://localhost:3000',
 });
 
 const useAxiosSecure = () => {
@@ -13,7 +13,7 @@ const useAxiosSecure = () => {
 
   useEffect(() => {
     const requestInterceptor = instance.interceptors.request.use((config) => {
-      config.headers.authorization = `Bearer ${user.accessToken}`;
+      config.headers.authorization = `Bearer ${localStorage.getItem('Token')}`;
       // console.log(config);
       return config;
     });

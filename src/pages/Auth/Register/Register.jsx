@@ -1,75 +1,99 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
-// import useAuth from '../../../hooks/useAuth';
-// import axios from 'axios';
-// import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useAuth from '../../../hooks/useAuth';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import axios from 'axios';
+import { Bounce, toast } from 'react-toastify';
 
 const Register = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  //   const { createUser, updateUser } = useAuth();
-  //   const axiosSecure = useAxiosSecure();
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { createUser, updateUser } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+
+  // Watch password field to compare with confirm password
+  const password = useWatch({ control, name: 'password' });
 
   const handleRegistration = (data) => {
-    console.log(data);
+    // console.log(data);
     // console.log('after register', data.photo[0]);
-    // const profileImg = data.photo[0];
+    const profileImg = data.photo[0];
 
-    // createUser(data.email, data.password)
-    //   .then(() => {
-    //     // console.log(result.user);
+    createUser(data.email, data.password)
+      .then(() => {
+        // console.log(result.user);
 
-    //     // 1. store the image in form data
-    //     const formData = new FormData();
-    //     formData.append('image', profileImg);
+        // 1. store the image in form data
+        const formData = new FormData();
+        formData.append('image', profileImg);
 
-    //     // 2. send the photo to store and get the ul
-    //     const imageAPIUrl = `https://api.imgbb.com/1/upload?key=
-    //         ${import.meta.env.VITE_IMAGE_HOST}`;
+        // 2. send the photo to store and get the ul
+        const imageAPIUrl = `https://api.imgbb.com/1/upload?key=
+            ${import.meta.env.VITE_IMAGE_HOST}`;
 
-    //     axios.post(imageAPIUrl, formData).then((res) => {
-    //       const photoURL = res.data.data.url;
+        axios.post(imageAPIUrl, formData).then((res) => {
+          const photoURL = res.data.data.url;
 
-    //       // create user in the database
-    //       const userInfo = {
-    //         email: data.email,
-    //         displayName: data.name,
-    //         photoURL: photoURL,
-    //       };
-    //       axiosSecure.post('/users', userInfo).then((res) => {
-    //         if (res.data.insertedId) {
-    //           console.log('user created in the database');
-    //         }
-    //       });
+          // create user in the database
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            address: data.address,
+            photoURL: photoURL,
+          };
+          axiosSecure.post('/users', userInfo).then((res) => {
+            if (res.data.insertedId) {
+              toast.success('Register Successfully!!!', {
+                position: 'top-center',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'dark',
+                transition: Bounce,
+              });
+            }
+          });
 
-    //       // update user profile to firebase
-    //       const userProfile = {
-    //         displayName: data.name,
-    //         photoURL: res.data.data.url,
-    //       };
+          // update user profile to firebase
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
 
-    //       updateUser(userProfile)
-    //         .then(() => {
-    //           console.log('profile updated successfully');
-    //         })
-    //         .catch((error) => [console.log(error)]);
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+          updateUser(userProfile)
+            .then(() => {
+              console.log('profile updated successfully');
+              navigate('/');
+            })
+            .catch((error) => console.log(error));
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleTogglePassword = (e) => {
     e.preventDefault();
     setShowPassword((prev) => !prev);
+  };
+
+  const handleToggleConfirmPassword = (e) => {
+    e.preventDefault();
+    setShowConfirmPassword((prev) => !prev);
   };
 
   return (
@@ -119,7 +143,7 @@ const Register = () => {
             placeholder="Your Photo"
           />
 
-          {errors.name?.type === 'required' && (
+          {errors.photo?.type === 'required' && (
             <p className="text-red-500">Photo is required.</p>
           )}
 
@@ -137,7 +161,7 @@ const Register = () => {
 
           {/* password */}
           <label className="label">Password</label>
-          <div className='relative'>
+          <div className="relative">
             <input
               type={showPassword ? 'text' : 'password'}
               {...register('password', {
@@ -172,6 +196,37 @@ const Register = () => {
                 lowercase, at least one number, and at least one special
                 characters
               </p>
+            )}
+          </div>
+
+          {/* confirm password */}
+          <label className="label">Confirm Password</label>
+          <div className="relative">
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              {...register('confirmPassword', {
+                required: true,
+                validate: (value) =>
+                  value === password || 'Passwords do not match',
+              })}
+              className="input w-full focus:border-transparent"
+              placeholder="Confirm Password"
+            />
+            <span
+              onClick={handleToggleConfirmPassword}
+              className={`absolute top-3 right-3 z-1 cursor-pointer text-white`}
+            >
+              {showConfirmPassword ? (
+                <FaEyeSlash size={18}></FaEyeSlash>
+              ) : (
+                <FaEye size={18}></FaEye>
+              )}
+            </span>
+            {errors.confirmPassword?.type === 'required' && (
+              <p className="text-red-500">Confirm Password is required.</p>
+            )}
+            {errors.confirmPassword?.type === 'validate' && (
+              <p className="text-red-500">{errors.confirmPassword.message}</p>
             )}
           </div>
 

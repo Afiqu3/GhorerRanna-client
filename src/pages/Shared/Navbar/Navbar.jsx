@@ -10,9 +10,10 @@ import { FaUser } from 'react-icons/fa';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'motion/react';
 import logoImg from '../../../assets/logo.png';
-// import useAuth from '../../hooks/useAuth';
 import useTheme from '../../../hooks/useTheme';
-// import { Bounce, toast } from "react-toastify";
+import useAuth from '../../../hooks/useAuth';
+import { Bounce, toast } from 'react-toastify';
+import LoadingSpinner from '../../Loading/LoadingSpinner';
 
 const navigationData = [
   {
@@ -59,8 +60,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
-  const user = false;
-  //   const { user, signOutUser } = useAuth();
+  // const user = false;
+  const { user, signOutUser } = useAuth();
   // const navigate = useNavigate();
 
   const links = navigationData.map((nav) => (
@@ -97,27 +98,28 @@ const Navbar = () => {
 
   // logout
   const handleLogOut = () => {
-    // signOutUser()
-    //   .then(() => {
-    //     toast.success("Logout Successfully!", {
-    //       position: "top-center",
-    //       autoClose: 3000,
-    //       hideProgressBar: false,
-    //       closeOnClick: false,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //       theme: "dark",
-    //       transition: Bounce,
-    //     });
-    //   })
-    //   .catch(() => {
-    //     // console.log(error);
-    //   });
+    signOutUser()
+      .then(() => {
+        toast.success('Logout Successfully!', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+          transition: Bounce,
+        });
+      })
+      .catch(() => {
+        // console.log(error);
+      });
   };
 
+
   return (
-    <section className='flex justify-center'>
+    <section className="flex justify-center">
       <div
         className={`fixed top-0 z-50 w-full transition-all duration-800 ease-in-out ${
           scrolled
@@ -196,7 +198,7 @@ const Navbar = () => {
                     <span>Register</span>
                   </Link>
 
-                  <div className='text-white'>
+                  <div className="text-white">
                     <label className="swap swap-rotate">
                       {/* this hidden checkbox controls the state */}
                       <input

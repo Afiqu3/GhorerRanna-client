@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-// import { Link, useLocation, useNavigate } from 'react-router';
-// import useAuth from '../../../hooks/useAuth';
+import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
-import { Link } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
+import { Bounce, toast } from 'react-toastify';
 
 const Login = () => {
   const {
@@ -13,20 +13,31 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  //   const { signInUser } = useAuth();
-  //   const location = useLocation();
-  //   const navigate = useNavigate();
+  const { signInUser } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (data) => {
-    console.log('form data', data);
-    // signInUser(data.email, data.password)
-    //   .then((result) => {
-    //     console.log(result.user);
-    //     navigate(location?.state || '/');
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    // console.log('form data', data);
+    signInUser(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success(`Welcome ${result.user.displayName}`, {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+          transition: Bounce,
+        });
+        navigate(location?.state || '/');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleTogglePassword = (e) => {
