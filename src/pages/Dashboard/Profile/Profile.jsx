@@ -23,8 +23,10 @@ const Profile = () => {
   const [userInfo, setUserInfo] = useState({});
   const [loading, setLoading] = useState(true);
   const [chef, setChef] = useState(false);
+  const [admin, setAdmin] = useState(false);
   const [error, setError] = useState(null);
 
+  
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -42,16 +44,22 @@ const Profile = () => {
     fetchUserInfo();
   }, [user, axiosSecure]);
 
-
   useEffect(() => {
     const checkChefRequest = async () => {
       try {
-        const response = await axiosSecure.get(`/chef-requests/${user.email}/check`);
-        // console.log('inside api', chef);
+        const response = await axiosSecure.get(
+          `/chef-requests/${user.email}/check`
+        );
+        const response2 = await axiosSecure.get(
+          `/admin-requests/${user.email}/check`
+        );
         if (response.data.requested) {
           setChef(true);
         }
-        } catch (err) {
+        if (response2.data.requested) {
+          setAdmin(true);
+        }
+      } catch (err) {
         console.error('Failed to check chef request status', err);
       }
     };
@@ -61,12 +69,13 @@ const Profile = () => {
 
   const handleBeChef = async () => {
     const data = {
-        userName: userInfo.displayName,
-        userEmail: userInfo.email,
-        requestType: 'chef',
-    }
+      userName: userInfo.displayName,
+      userEmail: userInfo.email,
+      requestType: 'chef',
+    };
     try {
       await axiosSecure.post('/chef-requests', data).then((res) => {
+        setChef(true);
         if (res.data.insertedId) {
           toast.success('Successfully requested for chef!!!', {
             position: 'top-center',
@@ -87,18 +96,39 @@ const Profile = () => {
     }
   };
 
-  const handleBeAdmin = () => {
-    console.log('Request to become an admin');
-    // Add your logic here
+  const handleBeAdmin = async () => {
+    const data = {
+      userName: userInfo.displayName,
+      userEmail: userInfo.email,
+      requestType: 'admin',
+    };
+    try {
+      await axiosSecure.post('/admin-requests', data).then((res) => {
+        setAdmin(true);
+        if (res.data.insertedId) {
+          toast.success('Successfully requested for admin!!!', {
+            position: 'top-center',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'dark',
+            transition: Bounce,
+          });
+        }
+      });
+    } catch (err) {
+      setError('Failed to load user information');
+      console.error(err);
+    }
   };
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <span
-          className="loading loading-spinner loading-lg"
-          style={{ color: '#FEA116' }}
-        ></span>
+        <span className="loading loading-spinner loading-lg text-secondary"></span>
       </div>
     );
   }
@@ -136,7 +166,7 @@ const Profile = () => {
   };
 
   const roleBadge = getRoleBadge(userInfo?.role);
-//   console.log(chef);
+  //   console.log(chef);
 
   return (
     <div
@@ -261,6 +291,7 @@ const Profile = () => {
                 <button
                   onClick={handleBeAdmin}
                   className="btn bg-primary flex-1 text-white font-semibold hover:opacity-90 transition-opacity border-0"
+                  disabled={admin}
                 >
                   <MdAdminPanelSettings className="w-5 h-5" />
                   Be an Admin

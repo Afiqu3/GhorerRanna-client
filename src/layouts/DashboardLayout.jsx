@@ -125,7 +125,7 @@ const DashboardLayout = () => {
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Create meal"
-                to="/dashboard/approve-riders"
+                to="/dashboard/create-meal"
               >
                 <IoMdAddCircle color="#FEA116" />
                 <span className="is-drawer-close:hidden">Create meal</span>
