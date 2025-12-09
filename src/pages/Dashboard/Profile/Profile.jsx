@@ -26,7 +26,6 @@ const Profile = () => {
   const [admin, setAdmin] = useState(false);
   const [error, setError] = useState(null);
 
-  
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -175,7 +174,7 @@ const Profile = () => {
     >
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-primary">
+          <h1 className={`text-3xl sm:text-4xl font-bold mb-2 ${ theme === 'dark' ? 'text-white' : 'text-primary' }`}>
             My Profile
           </h1>
         </div>
