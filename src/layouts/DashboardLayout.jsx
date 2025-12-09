@@ -1,43 +1,37 @@
 import React from 'react';
-import { CiDeliveryTruck } from 'react-icons/ci';
-import { FaMotorcycle, FaRegCreditCard, FaUsers } from 'react-icons/fa6';
+import { FaMotorcycle, FaUsers } from 'react-icons/fa6';
 import { Link, NavLink, Outlet } from 'react-router';
 import useRole from '../hooks/useRole';
-import { RiEBikeFill } from 'react-icons/ri';
-import { FaTasks } from 'react-icons/fa';
-import { SiGoogletasks } from 'react-icons/si';
+import { IoMdAddCircle } from "react-icons/io";
+import { IoMenu } from 'react-icons/io5';
+import { TiShoppingCart } from 'react-icons/ti';
+import { GiMeal } from "react-icons/gi";
+import { MdRateReview } from 'react-icons/md';
+import { CgProfile } from 'react-icons/cg';
+import { MdOutlineFavorite } from 'react-icons/md';
+import { CiSquareQuestion } from "react-icons/ci";
+import { MdManageAccounts } from "react-icons/md";
+import { FaUserShield } from "react-icons/fa";
+import { GrDocumentPerformance } from "react-icons/gr";
 import logoImg from '../assets/logo.png';
 
 const DashboardLayout = () => {
   const { role } = useRole();
   return (
-    <div className="drawer lg:drawer-open max-w-7xl mx-auto">
+    <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Navbar */}
-        <nav className="navbar w-full bg-base-300">
+        <nav className="navbar w-full bg-primary">
           <label
             htmlFor="my-drawer-4"
             aria-label="open sidebar"
             className="btn btn-square btn-ghost"
           >
             {/* Sidebar toggle icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              strokeWidth="2"
-              fill="none"
-              stroke="currentColor"
-              className="my-1.5 inline-block size-4"
-            >
-              <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
-              <path d="M9 4v16"></path>
-              <path d="M14 10l2 2l-2 2"></path>
-            </svg>
+            <IoMenu size={24} />
           </label>
-          <div className="px-4">GhorerRanna Dashboard</div>
+          <div className="px-4 font-bold">GhorerRanna Dashboard</div>
         </nav>
         {/* Page content here */}
         <Outlet></Outlet>
@@ -49,13 +43,13 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start bg-primary is-drawer-close:w-14 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <ul className="menu w-full grow">
             {/* List item */}
             <li>
               <Link to="/">
-                <img src={logoImg} alt="" />
+                <img className="w-15" src={logoImg} alt="" />
               </Link>
             </li>
 
@@ -74,7 +68,7 @@ const DashboardLayout = () => {
                   strokeWidth="2"
                   fill="none"
                   stroke="currentColor"
-                  className="my-1.5 inline-block size-4"
+                  className="my-1.5 inline-block size-4 text-secondary"
                 >
                   <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
                   <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -87,121 +81,103 @@ const DashboardLayout = () => {
             <li>
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="MyParcels"
-                to="/dashboard/my-parcels"
+                data-tip="My Profile"
+                to="/dashboard/my-profile"
               >
-                <CiDeliveryTruck />
-                <span className="is-drawer-close:hidden">My Parcels</span>
+                <CgProfile color="#FEA116" />
+                <span className="is-drawer-close:hidden">My Profile</span>
               </NavLink>
             </li>
 
             <li>
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Payment History"
+                data-tip="My Orders"
                 to="/dashboard/payment-history"
               >
-                <FaRegCreditCard />
-                <span className="is-drawer-close:hidden">Payment History</span>
+                <TiShoppingCart color="#FEA116" />
+                <span className="is-drawer-close:hidden">My Orders</span>
               </NavLink>
             </li>
 
-            {/* rider only links */}
-            {role === 'rider' && (
-              <>
-                <li>
-                  <NavLink
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Assigned Deliveries"
-                    to="/dashboard/assigned-deliveries"
-                  >
-                    <FaTasks />
-                    <span className="is-drawer-close:hidden">
-                      Assigned Deliveries
-                    </span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Completed Deliveries"
-                    to="/dashboard/completed-deliveries"
-                  >
-                    <SiGoogletasks />
-                    <span className="is-drawer-close:hidden">
-                      Completed Deliveries
-                    </span>
-                  </NavLink>
-                </li>
-              </>
-            )}
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Review"
+                to="/dashboard/assigned-deliveries"
+              >
+                <MdRateReview color="#FEA116" />
+                <span className="is-drawer-close:hidden">My Review</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Favorite Meal"
+                to="/dashboard/completed-deliveries"
+              >
+                <MdOutlineFavorite color="#FEA116" />
+                <span className="is-drawer-close:hidden">Favorite Meal</span>
+              </NavLink>
+            </li>
 
-            {/* admin only links */}
-
-            {role === 'admin' && (
-              <>
-                <li>
-                  <NavLink
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Approve Riders"
-                    to="/dashboard/approve-riders"
-                  >
-                    <FaMotorcycle />
-                    <span className="is-drawer-close:hidden">
-                      Approve Riders
-                    </span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Assign Riders"
-                    to="/dashboard/assign-riders"
-                  >
-                    <RiEBikeFill />
-                    <span className="is-drawer-close:hidden">
-                      Assign Riders
-                    </span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Users Management"
-                    to="/dashboard/users-management"
-                  >
-                    <FaUsers></FaUsers>
-                    <span className="is-drawer-close:hidden">
-                      Users Management
-                    </span>
-                  </NavLink>
-                </li>
-              </>
-            )}
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Create meal"
+                to="/dashboard/approve-riders"
+              >
+                <IoMdAddCircle color="#FEA116" />
+                <span className="is-drawer-close:hidden">Create meal</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Meals"
+                to="/dashboard/assign-riders"
+              >
+                <GiMeal color="#FEA116" />
+                <span className="is-drawer-close:hidden">My Meals</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Order Requests"
+                to="/dashboard/users-management"
+              >
+                <CiSquareQuestion color="#FEA116" />
+                <span className="is-drawer-close:hidden">Order Requests</span>
+              </NavLink>
+            </li>
 
             {/* List item */}
             <li>
               <button
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Settings"
+                data-tip="Manage User"
               >
-                {/* Settings icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                  className="my-1.5 inline-block size-4"
-                >
-                  <path d="M20 7h-9"></path>
-                  <path d="M14 17H5"></path>
-                  <circle cx="17" cy="17" r="3"></circle>
-                  <circle cx="7" cy="7" r="3"></circle>
-                </svg>
-                <span className="is-drawer-close:hidden">Settings</span>
+                <MdManageAccounts color="#FEA116" />
+                <span className="is-drawer-close:hidden">Manage User</span>
+              </button>
+            </li>
+            <li>
+              <button
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Mange request"
+              >
+                <FaUserShield color="#FEA116" />
+                <span className="is-drawer-close:hidden">Mange request</span>
+              </button>
+            </li>
+            <li>
+              <button
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Platform Statistics"
+              >
+                <GrDocumentPerformance color="#FEA116" />
+                <span className="is-drawer-close:hidden">Platform Statistics</span>
               </button>
             </li>
           </ul>

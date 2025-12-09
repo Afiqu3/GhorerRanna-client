@@ -7,6 +7,8 @@ import AuthLayout from '../layouts/AuthLayout';
 import Error from '../pages/Error/Error';
 import PrivateRouter from './PrivateRouter';
 import DashboardLayout from '../layouts/DashboardLayout';
+import DashboardHome from '../pages/Dashboard/Home/DashboardHome';
+import Profile from '../pages/Dashboard/Profile/Profile';
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,16 @@ export const router = createBrowserRouter([
         <DashboardLayout></DashboardLayout>
       </PrivateRouter>
     ),
+    children: [
+      {
+        index: true,
+        Component: DashboardHome,
+      },
+      {
+        path: 'my-profile',
+        Component: Profile,
+      },
+    ],
   },
   {
     path: '*',
