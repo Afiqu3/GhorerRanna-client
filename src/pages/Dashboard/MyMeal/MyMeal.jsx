@@ -79,7 +79,7 @@ const MyMeals = () => {
   };
 
   const handleUpdate = (mealId) => {
-    navigate(`/update-meal/${mealId}`);
+    navigate(`/dashboard/update-meal/${mealId}`);
   };
 
   if (loading) {

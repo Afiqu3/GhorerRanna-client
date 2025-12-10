@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router';
+import React, { useEffect } from 'react';
+import { Link, NavLink, Outlet, useLocation } from 'react-router';
 import useRole from '../hooks/useRole';
 import { IoMdAddCircle } from "react-icons/io";
 import { IoMenu } from 'react-icons/io5';
@@ -13,9 +13,21 @@ import { MdManageAccounts } from "react-icons/md";
 import { FaUserShield } from "react-icons/fa";
 import { GrDocumentPerformance } from "react-icons/gr";
 import logoImg from '../assets/logo.png';
+import useAuth from '../hooks/useAuth';
+import LoadingSpinner from '../pages/Loading/LoadingSpinner';
 
 const DashboardLayout = () => {
   const { role } = useRole();
+  const { loading } = useAuth();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  if (loading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -134,7 +146,7 @@ const DashboardLayout = () => {
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="My Meals"
-                to="/dashboard/my-meal"
+                to="/dashboard/my-meals"
               >
                 <GiMeal color="#FEA116" />
                 <span className="is-drawer-close:hidden">My Meals</span>
