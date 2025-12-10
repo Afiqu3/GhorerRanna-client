@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaMotorcycle, FaUsers } from 'react-icons/fa6';
 import { Link, NavLink, Outlet } from 'react-router';
 import useRole from '../hooks/useRole';
 import { IoMdAddCircle } from "react-icons/io";
@@ -135,7 +134,7 @@ const DashboardLayout = () => {
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="My Meals"
-                to="/dashboard/assign-riders"
+                to="/dashboard/my-meal"
               >
                 <GiMeal color="#FEA116" />
                 <span className="is-drawer-close:hidden">My Meals</span>

@@ -97,7 +97,7 @@ const CreateMeal = () => {
 
         const mealData = {
           foodName: data.foodName,
-          chefName: userInfo.name,
+          chefName: userInfo.displayName,
           foodImage: foodImage,
           price: parseFloat(data.price),
           rating: 0,
@@ -197,23 +197,35 @@ const CreateMeal = () => {
               </div>
 
               {/* Food Name */}
-              <div className="mb-6">
-                <label className="label mb-2">Food Name</label>
-                <input
-                  type="text"
-                  placeholder="e.g., Grilled Chicken Salad"
-                  className="input input-bordered w-full focus:outline-none focus:border-2"
-                  {...register('foodName', {
-                    required: 'Food name is required',
-                  })}
-                />
-                {errors.foodName && (
-                  <label className="label">
-                    <span className="label-text-alt text-error">
-                      {errors.foodName.message}
-                    </span>
-                  </label>
-                )}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="label mb-2">Chef Name</label>
+                  <input
+                    type="text"
+                    value={userInfo.displayName}
+                    placeholder="Name"
+                    className="input input-bordered w-full focus:outline-none focus:border-2"
+                    readOnly
+                  />
+                </div>
+                <div>
+                  <label className="label mb-2">Food Name</label>
+                  <input
+                    type="text"
+                    placeholder="e.g., Grilled Chicken Salad"
+                    className="input input-bordered w-full focus:outline-none focus:border-2"
+                    {...register('foodName', {
+                      required: 'Food name is required',
+                    })}
+                  />
+                  {errors.foodName && (
+                    <label className="label">
+                      <span className="label-text-alt text-error">
+                        {errors.foodName.message}
+                      </span>
+                    </label>
+                  )}
+                </div>
               </div>
 
               {/* Food Image */}

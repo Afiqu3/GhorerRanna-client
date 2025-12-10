@@ -10,6 +10,7 @@ import DashboardLayout from '../layouts/DashboardLayout';
 import DashboardHome from '../pages/Dashboard/Home/DashboardHome';
 import Profile from '../pages/Dashboard/Profile/Profile';
 import CreateMeal from '../pages/Dashboard/CreateMeal/CreateMeal';
+import MyMeal from '../pages/Dashboard/MyMeal/MyMeal';
 
 export const router = createBrowserRouter([
   {
@@ -55,7 +56,11 @@ export const router = createBrowserRouter([
       {
         path: 'create-meal',
         Component: CreateMeal,
-      }
+      },
+      {
+        path: 'my-meal',
+        Component: MyMeal,
+      },
     ],
   },
   {
