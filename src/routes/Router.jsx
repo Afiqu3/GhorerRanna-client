@@ -61,6 +61,10 @@ export const router = createBrowserRouter([
         path: 'my-meal',
         Component: MyMeal,
       },
+      {
+        path: 'update-meal/:mealId',
+        Component: MyMeal,
+      },
     ],
   },
   {

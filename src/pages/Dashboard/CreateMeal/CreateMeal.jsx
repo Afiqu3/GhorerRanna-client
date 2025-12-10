@@ -155,7 +155,7 @@ const CreateMeal = () => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-3">
-            <FaUtensils className="w-8 h-8" style={{ color: '#FEA116' }} />
+            <FaUtensils className="w-8 h-8" color="#FEA116" />
             <h1
               className={`text-3xl sm:text-4xl font-bold ${
                 theme === 'dark' ? 'text-white' : 'text-primary'
@@ -335,8 +335,7 @@ const CreateMeal = () => {
                   <button
                     type="button"
                     onClick={addIngredient}
-                    className="btn text-white border-0"
-                    style={{ backgroundColor: '#FEA116' }}
+                    className="btn text-white border-0 bg-secondary"
                   >
                     <IoMdAdd className="w-5 h-5" />
                     Add
