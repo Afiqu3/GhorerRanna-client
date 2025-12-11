@@ -45,6 +45,7 @@ const UpdateMeal = () => {
 
         // Set form values
         setValue('foodName', meal.foodName);
+        setValue('deliveryArea', meal.deliveryArea);
         setValue('foodImage', meal.foodImage);
         setValue('price', meal.price);
         setValue('estimatedDeliveryTime', meal.estimatedDeliveryTime);
@@ -92,6 +93,7 @@ const UpdateMeal = () => {
       const updatedMealData = {
         foodName: data.foodName,
         foodImage: data.foodImage,
+        deliveryArea: data.deliveryArea,
         price: parseFloat(data.price),
         ingredients: ingredients,
         estimatedDeliveryTime: data.estimatedDeliveryTime,
@@ -206,6 +208,26 @@ const UpdateMeal = () => {
                 )}
               </div>
 
+              {/* Delivery Area */}
+              <div className="mb-6">
+                <label className="label mb-2">Delivery Area</label>
+                <input
+                  type="text"
+                  placeholder="e.g., Dhaka"
+                  className="input input-bordered w-full focus:outline-none focus:border-2"
+                  {...register('deliveryArea', {
+                    required: 'Delivery Area',
+                  })}
+                />
+                {errors.deliveryArea && (
+                  <label className="label">
+                    <span className="label-text-alt text-error">
+                      {errors.deliveryArea.message}
+                    </span>
+                  </label>
+                )}
+              </div>
+
               {/* Food Image URL */}
               <div className="mb-6">
                 <label className="label mb-2">Food Image URL</label>
@@ -258,9 +280,7 @@ const UpdateMeal = () => {
 
                 {/* Estimated Delivery Time */}
                 <div>
-                  <label className="label mb-2">
-                      Delivery Time
-                  </label>
+                  <label className="label mb-2">Delivery Time</label>
                   <input
                     type="text"
                     placeholder="e.g., 30 minutes"
@@ -281,9 +301,7 @@ const UpdateMeal = () => {
 
               {/* Ingredients */}
               <div className="mb-6">
-                <label className="label mb-2">
-                    Ingredients
-                </label>
+                <label className="label mb-2">Ingredients</label>
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -327,9 +345,7 @@ const UpdateMeal = () => {
 
               {/* Chef Experience */}
               <div className="mb-8">
-                <label className="label mb-2">
-                    Chef Experience
-                </label>
+                <label className="label mb-2">Chef Experience</label>
                 <textarea
                   placeholder="e.g., 5 years of experience in Mediterranean cuisine"
                   className="textarea textarea-bordered h-24 w-full focus:outline-none focus:border-2"

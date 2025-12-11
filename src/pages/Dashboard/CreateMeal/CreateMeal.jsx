@@ -98,6 +98,7 @@ const CreateMeal = () => {
         const mealData = {
           foodName: data.foodName,
           chefName: userInfo.displayName,
+          deliveryArea: data.deliveryArea,
           foodImage: foodImage,
           price: parseFloat(data.price),
           rating: 0,
@@ -226,6 +227,26 @@ const CreateMeal = () => {
                     </label>
                   )}
                 </div>
+              </div>
+
+              {/* Delivery Area */}
+              <div className="mb-6">
+                <label className="label mb-2">Delivery Area</label>
+                <input
+                  type="text"
+                  placeholder="e.g., Dhaka"
+                  className="input input-bordered w-full focus:outline-none focus:border-2"
+                  {...register('deliveryArea', {
+                    required: 'Delivery Area',
+                  })}
+                />
+                {errors.deliveryArea && (
+                  <label className="label">
+                    <span className="label-text-alt text-error">
+                      {errors.deliveryArea.message}
+                    </span>
+                  </label>
+                )}
               </div>
 
               {/* Food Image */}
