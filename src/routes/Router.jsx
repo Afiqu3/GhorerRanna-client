@@ -12,6 +12,7 @@ import Profile from '../pages/Dashboard/Profile/Profile';
 import CreateMeal from '../pages/Dashboard/CreateMeal/CreateMeal';
 import MyMeal from '../pages/Dashboard/MyMeal/MyMeal';
 import UpdateMeal from '../pages/Dashboard/MyMeal/UpdateMeal';
+import MealDetails from '../pages/Meals/MealDetails';
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: 'mealDetails/:mealId',
+        element: (
+          <PrivateRouter>
+            <MealDetails></MealDetails>
+          </PrivateRouter>
+        ),
       },
     ],
   },

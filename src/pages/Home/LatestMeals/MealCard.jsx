@@ -1,7 +1,10 @@
 import React from 'react';
 import { FaStar, FaMapMarkerAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router';
 
 const MealCard = ({ meal }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-primary rounded-2xl shadow-lg overflow-hidden border border-[#1E293B] hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
       <div className="w-full h-48">
@@ -30,7 +33,7 @@ const MealCard = ({ meal }) => {
 
         <div className="flex items-center justify-between mt-4">
           <p className="text-lg font-bold text-secondary">${meal.price}</p>
-          <button className="my-btn rounded-full cursor-pointer">
+          <button onClick={() => navigate(`/mealDetails/${meal._id}`)} className="my-btn rounded-full cursor-pointer">
             See Details
           </button>
         </div>

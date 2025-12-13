@@ -97,7 +97,7 @@ const Register = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto shrink-0">
+    <div className="w-full max-w-md mx-auto shrink-0 text-white">
       <title>Register-GhorerRanna</title>
       <h3 className="text-3xl font-extrabold">Create an Account</h3>
       <p className="">
@@ -114,7 +114,7 @@ const Register = () => {
           <input
             type="text"
             {...register('name', { required: true })}
-            className="input w-full focus:border-transparent"
+            className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
             placeholder="Your Name"
           />
           {errors.name?.type === 'required' && (
@@ -126,7 +126,7 @@ const Register = () => {
           <input
             type="text"
             {...register('address', { required: true })}
-            className="input w-full focus:border-transparent"
+            className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
             placeholder="Your address"
           />
           {errors.address?.type === 'required' && (
@@ -139,7 +139,7 @@ const Register = () => {
           <input
             type="file"
             {...register('photo', { required: true })}
-            className="file-input w-full focus:border-transparent"
+            className="file-input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
             placeholder="Your Photo"
           />
 
@@ -152,7 +152,7 @@ const Register = () => {
           <input
             type="email"
             {...register('email', { required: true })}
-            className="input w-full focus:border-transparent"
+            className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
             placeholder="Email"
           />
           {errors.email?.type === 'required' && (
@@ -169,7 +169,7 @@ const Register = () => {
                 minLength: 6,
                 pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/,
               })}
-              className="input w-full focus:border-transparent"
+              className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
               placeholder="Password"
             />
             <span
@@ -209,7 +209,7 @@ const Register = () => {
                 validate: (value) =>
                   value === password || 'Passwords do not match',
               })}
-              className="input w-full focus:border-transparent"
+              className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
               placeholder="Confirm Password"
             />
             <span
@@ -230,7 +230,7 @@ const Register = () => {
             )}
           </div>
 
-          <button className="btn bg-secondary text-primary font-semibold hover:bg-[#ffb73a] transition-all mt-4">
+          <button className="btn border-0 shadow-none outline-none bg-secondary text-primary font-semibold hover:bg-[#ffb73a] transition-all mt-4">
             Register
           </button>
         </fieldset>

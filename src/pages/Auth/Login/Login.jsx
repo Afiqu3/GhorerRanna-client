@@ -48,18 +48,18 @@ const Login = () => {
   return (
     <section className="w-full mx-auto max-w-sm shrink-0">
       <title>Login-GhorerRanna</title>
-      <h3 className="text-3xl font-extrabold">Welcome back</h3>
-      <p className="">
+      <h3 className="text-3xl font-extrabold text-white">Welcome back</h3>
+      <p className="text-white">
         Login with <span className="text-secondary">GhorerRanna</span>
       </p>
       <form className="space-y-4 mt-3" onSubmit={handleSubmit(handleLogin)}>
         <fieldset className="fieldset">
           {/* email field */}
-          <label className="label">Email</label>
+          <label className="label text-[#999D93]">Email</label>
           <input
             type="email"
             {...register('email', { required: true })}
-            className="input w-full focus:border-transparent"
+            className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
             placeholder="Email"
           />
           {errors.email?.type === 'required' && (
@@ -67,12 +67,12 @@ const Login = () => {
           )}
 
           {/* password field */}
-          <label className="label">Password</label>
+          <label className="label text-[#999D93]">Password</label>
           <div className="relative">
             <input
               type={showPassword ? 'text' : 'password'}
               {...register('password', { required: true })}
-              className="input w-full focus:border-transparent"
+              className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
               placeholder="Password"
             />
 
@@ -89,13 +89,13 @@ const Login = () => {
           </div>
 
           <div>
-            <a className="link link-hover">Forgot password?</a>
+            <a className="link link-hover text-white">Forgot password?</a>
           </div>
-          <button className="btn bg-secondary text-primary font-semibold hover:bg-[#ffb73a] transition-all mt-4">
+          <button className="btn border-0 shadow-none outline-none bg-secondary text-primary font-semibold hover:bg-[#ffb73a] transition-all mt-4">
             Login
           </button>
         </fieldset>
-        <p>
+        <p className='text-white'>
           Don't have any account?{' '}
           <Link
             state={location.state}
