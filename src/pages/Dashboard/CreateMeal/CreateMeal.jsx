@@ -181,8 +181,8 @@ const CreateMeal = () => {
                     type="text"
                     value={user?.email}
                     placeholder="User Email"
-                    className="input input-bordered w-full focus:outline-none focus:border-2"
-                    readOnly
+                    className="input input-bordered w-full focus:outline-none focus:border-2 cursor-not-allowed"
+                    disabled
                   />
                 </div>
                 <div>
@@ -191,8 +191,8 @@ const CreateMeal = () => {
                     type="text"
                     value={userInfo?.chefId}
                     placeholder="chef id"
-                    className="input input-bordered w-full focus:outline-none focus:border-2"
-                    readOnly
+                    className="input input-bordered w-full focus:outline-none focus:border-2 cursor-not-allowed"
+                    disabled
                   />
                 </div>
               </div>
@@ -205,8 +205,8 @@ const CreateMeal = () => {
                     type="text"
                     value={userInfo.displayName}
                     placeholder="Name"
-                    className="input input-bordered w-full focus:outline-none focus:border-2"
-                    readOnly
+                    className="input input-bordered w-full focus:outline-none focus:border-2 cursor-not-allowed"
+                    disabled
                   />
                 </div>
                 <div>
