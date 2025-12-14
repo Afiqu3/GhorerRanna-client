@@ -13,6 +13,7 @@ import CreateMeal from '../pages/Dashboard/CreateMeal/CreateMeal';
 import MyMeal from '../pages/Dashboard/MyMeal/MyMeal';
 import UpdateMeal from '../pages/Dashboard/MyMeal/UpdateMeal';
 import MealDetails from '../pages/Meals/MealDetails';
+import Order from '../pages/Order/Order';
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <MealDetails></MealDetails>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: 'order/:mealId',
+        element: (
+          <PrivateRouter>
+            <Order></Order>
           </PrivateRouter>
         ),
       },
