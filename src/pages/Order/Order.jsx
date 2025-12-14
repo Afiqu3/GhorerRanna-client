@@ -113,6 +113,7 @@ const Order = () => {
         userEmail: user.email,
         userAddress: data.userAddress,
         orderStatus: 'pending',
+        paymentStatus: 'pending',
       };
 
       const response = await axiosSecure.post('/orders', orderData);

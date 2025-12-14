@@ -14,6 +14,7 @@ import MyMeal from '../pages/Dashboard/MyMeal/MyMeal';
 import UpdateMeal from '../pages/Dashboard/MyMeal/UpdateMeal';
 import MealDetails from '../pages/Meals/MealDetails';
 import Order from '../pages/Order/Order';
+import OrderRequests from '../pages/Dashboard/OrderRequests/OrderRequests';
 
 export const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ export const router = createBrowserRouter([
       {
         path: 'update-meal/:mealId',
         Component: UpdateMeal,
+      },
+      {
+        path: 'order-requests',
+        Component: OrderRequests,
       },
     ],
   },

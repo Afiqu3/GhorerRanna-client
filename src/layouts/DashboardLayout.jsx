@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router';
 import useRole from '../hooks/useRole';
-import { IoMdAddCircle } from "react-icons/io";
+import { IoMdAddCircle } from 'react-icons/io';
 import { IoMenu } from 'react-icons/io5';
 import { TiShoppingCart } from 'react-icons/ti';
-import { GiMeal } from "react-icons/gi";
+import { GiMeal } from 'react-icons/gi';
 import { MdRateReview } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { MdOutlineFavorite } from 'react-icons/md';
-import { CiSquareQuestion } from "react-icons/ci";
-import { MdManageAccounts } from "react-icons/md";
-import { FaUserShield } from "react-icons/fa";
-import { GrDocumentPerformance } from "react-icons/gr";
+import { CiSquareQuestion } from 'react-icons/ci';
+import { MdManageAccounts } from 'react-icons/md';
+import { FaUserShield } from 'react-icons/fa';
+import { GrDocumentPerformance } from 'react-icons/gr';
 import logoImg from '../assets/logo.png';
 import useAuth from '../hooks/useAuth';
 import LoadingSpinner from '../pages/Loading/LoadingSpinner';
@@ -156,7 +156,7 @@ const DashboardLayout = () => {
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Order Requests"
-                to="/dashboard/users-management"
+                to="/dashboard/order-requests"
               >
                 <CiSquareQuestion color="#FEA116" />
                 <span className="is-drawer-close:hidden">Order Requests</span>
@@ -188,7 +188,9 @@ const DashboardLayout = () => {
                 data-tip="Platform Statistics"
               >
                 <GrDocumentPerformance color="#FEA116" />
-                <span className="is-drawer-close:hidden">Platform Statistics</span>
+                <span className="is-drawer-close:hidden">
+                  Platform Statistics
+                </span>
               </button>
             </li>
           </ul>
