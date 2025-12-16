@@ -22,7 +22,6 @@ const MyOrders = () => {
   const { theme } = useTheme();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [processingPayment, setProcessingPayment] = useState(null);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -41,44 +40,41 @@ const MyOrders = () => {
   }, [user, axiosSecure]);
 
   const handlePayment = async (order) => {
-    setProcessingPayment(order._id);
-    // const loadingToast = toast.loading('Redirecting to payment...');
-
-    // try {
-    //   // Create payment intent on backend
-    //   const response = await axiosSecure.post('/create-payment-intent', {
-    //     amount: Math.round(order.totalPrice * 100), // Convert to cents
-    //     orderId: order._id,
-    //     mealName: order.mealName,
-    //     userEmail: order.userEmail,
+    // app.post('/create-payment-session', verifyJWTToken, async (req, res) => {
+    //   const orderInfo = req.body;
+    //   const amount = orderInfo.price * 100;
+    //   const session = await stripe.checkout.sessions.create({
+    //     line_items: [
+    //       {
+    //         price_data: {
+    //           currency: 'usd',
+    //           unit_amount: amount,
+    //           product_data: {
+    //             name: `Please pay for ${orderInfo.mealName}`,
+    //           },
+    //           quantity: orderInfo.quantity,
+    //         },
+    //       },
+    //     ],
+    //     mode: 'payment',
+    //     metadata: {
+    //       userEmail: orderInfo.mealName,
+    //       orderId: orderInfo._id,
+    //     },
+    //     success_url: `${process.env.SITE_DOMAIN}/dashboard/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+    //     cancel_url: `${process.env.SITE_DOMAIN}/dashboard/my-orders`,
     //   });
-
-    //   const { clientSecret } = response.data;
-
-    //   // Get Stripe instance
-    //   const stripe = await stripePromise;
-
-    //   // Redirect to Stripe Checkout
-    //   const { error } = await stripe.redirectToCheckout({
-    //     sessionId: clientSecret, // In real implementation, you'd get sessionId from backend
-    //   });
-
-    //   if (error) {
-    //     throw error;
-    //   }
-
-    //   toast.success('Redirecting to payment...', { id: loadingToast });
-
-    //   // Alternative: For embedded payment form, you can navigate to a payment page
-    //   // window.location.href = `/payment/${order._id}`;
-    // } catch (error) {
-    //   console.error('Error processing payment:', error);
-    //   toast.error('Failed to process payment. Please try again.', {
-    //     id: loadingToast,
-    //   });
-    // } finally {
-    //   setProcessingPayment(null);
-    // }
+    //   res.send({ url: session.url });
+    // });
+    try {
+      const response = await axiosSecure.post('/create-payment-session', {
+        ...order,
+      });
+      const { url } = response.data;
+      window.location.href = url;
+    } catch (error) {
+      console.error('Error creating payment session:', error);
+    }
   };
 
   const formatDate = (dateString) => {
@@ -337,7 +333,7 @@ const MyOrders = () => {
                       <MdAccessTime className="w-4 h-4" color="#FEA116" />
                       <p className="text-sm">
                         <span className="font-semibold">Delivery:</span>{' '}
-                        {order.estimatedDeliveryTime}
+                        {order.orderStatus === 'delivered' ? 'Completed' : 'In Progress'}
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -363,9 +359,6 @@ const MyOrders = () => {
                         <FaCreditCard className="w-5 h-5" />
                         Pay Now - {order.totalPrice.toFixed(2)}
                       </button>
-                      <p className="text-xs text-center mt-2 text-base-content/70">
-                        Secure payment powered by Stripe
-                      </p>
                     </div>
                   )}
 
