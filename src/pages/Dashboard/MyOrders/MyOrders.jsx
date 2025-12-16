@@ -2,116 +2,83 @@ import { useState, useEffect } from 'react';
 import {
   MdRestaurantMenu,
   MdAttachMoney,
-  MdEmail,
-  MdLocationOn,
   MdAccessTime,
-  MdCancel,
+  MdPerson,
+  MdPayment,
 } from 'react-icons/md';
 import {
   FaUtensils,
-  FaCheckCircle,
-  FaTruck,
+  FaHashtag,
   FaShoppingBag,
+  FaCreditCard,
 } from 'react-icons/fa';
 import { BiSolidPurchaseTag } from 'react-icons/bi';
-import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useTheme from '../../../hooks/useTheme';
 import useAuth from '../../../hooks/useAuth';
 
-const OrderRequests = () => {
+const MyOrders = () => {
   const axiosSecure = useAxiosSecure();
   const { theme } = useTheme();
   const [orders, setOrders] = useState([]);
-  const [chefInfo, setChefInfo] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [updatingOrderId, setUpdatingOrderId] = useState(null);
-
+  const [processingPayment, setProcessingPayment] = useState(null);
   const { user } = useAuth();
 
   useEffect(() => {
-    const fetchChefAndOrders = async () => {
+    const fetchOrders = async () => {
       try {
         setLoading(true);
-
-        const userResponse = await axiosSecure.get(`/users/${user.email}/info`);
-        const chef = userResponse.data;
-        setChefInfo(chef);
-
-        // const ordersResponse = await axiosSecure.get(`/orders/${chef.chefId}`);
-        const ordersResponse = await axiosSecure.get(`/orders/123`);
-        setOrders(ordersResponse.data);
+        const response = await axiosSecure.get(`/orders/${user.email}/user`);
+        setOrders(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching orders:', error);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchChefAndOrders();
+    fetchOrders();
   }, [user, axiosSecure]);
 
-  const updateOrderStatus = async (orderId, newStatus, actionName) => {
-    const result = await Swal.fire({
-      title: `${actionName} Order?`,
-      text: `Are you sure you want to ${actionName.toLowerCase()} this order?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#0F172B',
-      cancelButtonColor: '#d33',
-      confirmButtonText: `Yes, ${actionName}!`,
-      cancelButtonText: 'Cancel',
-    });
+  const handlePayment = async (order) => {
+    setProcessingPayment(order._id);
+    // const loadingToast = toast.loading('Redirecting to payment...');
 
-    if (!result.isConfirmed) {
-      return;
-    }
+    // try {
+    //   // Create payment intent on backend
+    //   const response = await axiosSecure.post('/create-payment-intent', {
+    //     amount: Math.round(order.totalPrice * 100), // Convert to cents
+    //     orderId: order._id,
+    //     mealName: order.mealName,
+    //     userEmail: order.userEmail,
+    //   });
 
-    setUpdatingOrderId(orderId);
+    //   const { clientSecret } = response.data;
 
-    try {
-      const response = await axiosSecure.patch(`/orders/${orderId}/status`, {
-        status: newStatus,
-      });
+    //   // Get Stripe instance
+    //   const stripe = await stripePromise;
 
-      if (response.data.modifiedCount > 0) {
-        // Update local state
-        setOrders(
-          orders.map((order) =>
-            order._id === orderId ? { ...order, orderStatus: newStatus } : order
-          )
-        );
+    //   // Redirect to Stripe Checkout
+    //   const { error } = await stripe.redirectToCheckout({
+    //     sessionId: clientSecret, // In real implementation, you'd get sessionId from backend
+    //   });
 
-        Swal.fire({
-          title: 'Success!',
-          text: `Order ${actionName.toLowerCase()} successfully!`,
-          icon: 'success',
-          confirmButtonColor: '#FEA116',
-        });
-      }
-    } catch (error) {
-      console.error('Error updating order:', error);
-      Swal.fire({
-        title: 'Error!',
-        text: 'Failed to update order status. Please try again.',
-        icon: 'error',
-        confirmButtonColor: '#d33',
-      });
-    } finally {
-      setUpdatingOrderId(null);
-    }
-  };
+    //   if (error) {
+    //     throw error;
+    //   }
 
-  const handleCancel = (orderId) => {
-    updateOrderStatus(orderId, 'cancelled', 'Cancel');
-  };
+    //   toast.success('Redirecting to payment...', { id: loadingToast });
 
-  const handleAccept = (orderId) => {
-    updateOrderStatus(orderId, 'accepted', 'Accept');
-  };
-
-  const handleDeliver = (orderId) => {
-    updateOrderStatus(orderId, 'delivered', 'Deliver');
+    //   // Alternative: For embedded payment form, you can navigate to a payment page
+    //   // window.location.href = `/payment/${order._id}`;
+    // } catch (error) {
+    //   console.error('Error processing payment:', error);
+    //   toast.error('Failed to process payment. Please try again.', {
+    //     id: loadingToast,
+    //   });
+    // } finally {
+    //   setProcessingPayment(null);
+    // }
   };
 
   const formatDate = (dateString) => {
@@ -138,7 +105,7 @@ const OrderRequests = () => {
         bgColor: 'rgba(16, 185, 129, 0.1)',
       },
       delivered: {
-        color: 'white',
+        color: '#0F172B',
         text: 'Delivered',
         bgColor: 'rgba(15, 23, 43, 0.1)',
       },
@@ -153,7 +120,7 @@ const OrderRequests = () => {
 
     return (
       <span
-        className="badge font-semibold"
+        className="badge badge-lg font-semibold"
         style={{
           backgroundColor: config.bgColor,
           color: config.color,
@@ -167,8 +134,8 @@ const OrderRequests = () => {
 
   const getPaymentStatusBadge = (status) => {
     const statusConfig = {
-      pending: { color: '#FEA116', text: 'Pending' },
-      paid: { color: '#10b981', text: 'Paid' },
+      pending: { color: '#FEA116', text: 'Pending', icon: '⏳' },
+      paid: { color: '#10b981', text: 'Paid', icon: '✓' },
     };
 
     const config = statusConfig[status] || statusConfig.pending;
@@ -182,27 +149,24 @@ const OrderRequests = () => {
           border: `1px solid ${config.color}`,
         }}
       >
-        {config.text}
+        {config.icon} {config.text}
       </span>
     );
   };
 
-  const isButtonDisabled = (order, action) => {
-    const isUpdating = updatingOrderId === order._id;
-
-    if (isUpdating) return true;
-
-    if (action === 'cancel') return order.orderStatus !== 'pending';
-
-    if (action === 'accept') return order.orderStatus !== 'pending';
-
-    if (action === 'deliver') return order.orderStatus !== 'accepted';
+  const shouldShowPayButton = (order) => {
+    return (
+      order.orderStatus === 'accepted' && order.paymentStatus === 'pending'
+    );
   };
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <span className="loading loading-spinner loading-lg text-secondary"></span>
+        <span
+          className="loading loading-spinner loading-lg"
+          style={{ color: '#FEA116' }}
+        ></span>
       </div>
     );
   }
@@ -222,7 +186,7 @@ const OrderRequests = () => {
                 theme === 'dark' ? 'text-white' : 'text-primary'
               }`}
             >
-              Order Requests
+              My Orders
             </h1>
           </div>
           <p
@@ -230,11 +194,11 @@ const OrderRequests = () => {
               theme === 'dark' ? 'text-white' : 'text-primary'
             }`}
           >
-            Manage all orders for your meals
+            Track and manage all your orders
           </p>
         </div>
 
-        {/* Orders Count */}
+        {/* Orders Statistics */}
         {orders.length > 0 && (
           <div className="mb-6 flex flex-wrap gap-4 justify-center">
             <div className="stats shadow">
@@ -251,17 +215,17 @@ const OrderRequests = () => {
             </div>
             <div className="stats shadow">
               <div className="stat">
-                <div className="stat-title">Pending</div>
+                <div className="stat-title">Pending Payment</div>
                 <div className="stat-value text-secondary">
-                  {orders.filter((o) => o.orderStatus === 'pending').length}
+                  {orders.filter((o) => o.paymentStatus === 'pending').length}
                 </div>
               </div>
             </div>
             <div className="stats shadow">
               <div className="stat">
-                <div className="stat-title">Accepted</div>
+                <div className="stat-title">Delivered</div>
                 <div className="stat-value text-success">
-                  {orders.filter((o) => o.orderStatus === 'accepted').length}
+                  {orders.filter((o) => o.orderStatus === 'delivered').length}
                 </div>
               </div>
             </div>
@@ -271,7 +235,10 @@ const OrderRequests = () => {
         {/* Orders List */}
         {orders.length === 0 ? (
           <div className="text-center py-16">
-            <FaShoppingBag className="w-20 h-20 mx-auto mb-4 opacity-30 text-secondary" />
+            <FaShoppingBag
+              className="w-20 h-20 mx-auto mb-4 opacity-30"
+              color="#FEA116"
+            />
             <h3
               className={`text-2xl font-semibold mb-2 ${
                 theme === 'dark' ? 'text-white' : 'text-primary'
@@ -280,12 +247,20 @@ const OrderRequests = () => {
               No Orders Yet
             </h3>
             <p
-              className={`"text-base-content/7 ${
+              className={`text-base-content/70 mb-6 ${
                 theme === 'dark' ? 'text-white' : 'text-primary'
               }`}
             >
-              You don't have any orders at the moment.
+              You haven't placed any orders yet. Start exploring our delicious
+              meals!
             </p>
+            <button
+              onClick={() => (window.location.href = '/meals')}
+              className="btn text-white font-semibold border-0 bg-secondary"
+            >
+              <FaUtensils className="w-5 h-5" />
+              Browse Meals
+            </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -345,87 +320,78 @@ const OrderRequests = () => {
                     </div>
                   </div>
 
-                  {/* Customer Info */}
+                  {/* Chef & Delivery Info */}
                   <div className="space-y-2 mb-4 p-3 rounded-lg bg-base-200/50">
                     <div className="flex items-center gap-2">
-                      <MdEmail className="w-4 h-4" color="#FEA116" />
-                      <p className="text-sm break-all">{order.userEmail}</p>
+                      <MdPerson className="w-4 h-4" color="#FEA116" />
+                      <p className="text-sm">
+                        <span className="font-semibold">Chef:</span>{' '}
+                        {order.chefName}
+                      </p>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <MdLocationOn
-                        className="w-4 h-4 mt-0.5 shrink-0"
-                        color="#FEA116"
-                      />
-                      <p className="text-sm">{order.userAddress}</p>
+                    <div className="flex items-center gap-2">
+                      <FaHashtag className="w-4 h-4" color="#FEA116" />
+                      <p className="text-sm font-mono">{order.chefId}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <MdAccessTime className="w-4 h-4" color="#FEA116" />
-                      <p className="text-sm">{formatDate(order.orderTime)}</p>
+                      <p className="text-sm">
+                        <span className="font-semibold">Delivery:</span>{' '}
+                        {order.estimatedDeliveryTime}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MdAccessTime
+                        className="w-4 h-4"
+                        style={{ color: '#FEA116' }}
+                      />
+                      <p className="text-sm">
+                        <span className="font-semibold">Ordered:</span>{' '}
+                        {formatDate(order.orderTime)}
+                      </p>
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-2 pt-4 border-t">
-                    <button
-                      onClick={() => handleCancel(order._id)}
-                      disabled={isButtonDisabled(order, 'cancel')}
-                      className="btn btn-sm flex-1 text-white font-semibold border-0 disabled:opacity-50 disabled:cursor-not-allowed"
-                      style={{
-                        backgroundColor: isButtonDisabled(order, 'cancel')
-                          ? '#9ca3af'
-                          : '#ef4444',
-                      }}
-                    >
-                      {updatingOrderId === order._id ? (
-                        <span className="loading loading-spinner loading-xs"></span>
-                      ) : (
-                        <>
-                          <MdCancel className="w-4 h-4" />
-                          Cancel
-                        </>
-                      )}
-                    </button>
+                  {/* Pay Button */}
+                  {shouldShowPayButton(order) && (
+                    <div className="pt-4 border-t">
+                      <button
+                        onClick={() => handlePayment(order)}
+                        // disabled={processingPayment === order._id}
+                        className="btn btn-lg w-full text-white font-semibold border-0 bg-primary"
+                      >
+                        <FaCreditCard className="w-5 h-5" />
+                        Pay Now - {order.totalPrice.toFixed(2)}
+                      </button>
+                      <p className="text-xs text-center mt-2 text-base-content/70">
+                        Secure payment powered by Stripe
+                      </p>
+                    </div>
+                  )}
 
-                    <button
-                      onClick={() => handleAccept(order._id)}
-                      disabled={isButtonDisabled(order, 'accept')}
-                      className="btn btn-sm flex-1 text-white font-semibold border-0 disabled:opacity-50 disabled:cursor-not-allowed"
-                      style={{
-                        backgroundColor: isButtonDisabled(order, 'accept')
-                          ? '#9ca3af'
-                          : '#10b981',
-                      }}
-                    >
-                      {updatingOrderId === order._id ? (
-                        <span className="loading loading-spinner loading-xs"></span>
-                      ) : (
-                        <>
-                          <FaCheckCircle className="w-4 h-4" />
-                          Accept
-                        </>
-                      )}
-                    </button>
-
-                    <button
-                      onClick={() => handleDeliver(order._id)}
-                      disabled={isButtonDisabled(order, 'deliver')}
-                      className="btn btn-sm flex-1 text-white font-semibold border-0 disabled:opacity-50 disabled:cursor-not-allowed"
-                      style={{
-                        backgroundColor: isButtonDisabled(order, 'deliver')
-                          ? '#9ca3af'
-                          : '#0F172B',
-                      }}
-                    >
-                      {updatingOrderId === order._id ? (
-                        <span className="loading loading-spinner loading-xs"></span>
-                      ) : (
-                        <>
-                          <FaTruck className="w-4 h-4" />
-                          Deliver
-                        </>
-                      )}
-                    </button>
-                  </div>
+                  {/* Payment Complete Message */}
+                  {order.paymentStatus === 'paid' && (
+                    <div className="pt-4 border-t">
+                      <div className="alert alert-success">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="stroke-current shrink-0 h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        <span className="text-sm">
+                          Payment completed successfully!
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -436,4 +402,4 @@ const OrderRequests = () => {
   );
 };
 
-export default OrderRequests;
+export default MyOrders;

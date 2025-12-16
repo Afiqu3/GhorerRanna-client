@@ -15,6 +15,7 @@ import UpdateMeal from '../pages/Dashboard/MyMeal/UpdateMeal';
 import MealDetails from '../pages/Meals/MealDetails';
 import Order from '../pages/Order/Order';
 import OrderRequests from '../pages/Dashboard/OrderRequests/OrderRequests';
+import MyOrders from '../pages/Dashboard/MyOrders/MyOrders';
 
 export const router = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ export const router = createBrowserRouter([
       {
         path: 'order-requests',
         Component: OrderRequests,
+      },
+      {
+        path: 'my-orders',
+        Component: MyOrders,
       },
     ],
   },

@@ -110,6 +110,7 @@ const Order = () => {
         quantity: parseInt(data.quantity),
         totalPrice: parseFloat(totalPrice),
         chefId: meal.chefId,
+        chefName: meal.chefName,
         userEmail: user.email,
         userAddress: data.userAddress,
         orderStatus: 'pending',
@@ -136,7 +137,7 @@ const Order = () => {
         });
 
         setTimeout(() => {
-          navigate('/');
+          navigate('/dashboard/my-orders');
         }, 1500);
       }
     } catch (error) {

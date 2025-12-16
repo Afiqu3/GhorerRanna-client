@@ -104,7 +104,7 @@ const DashboardLayout = () => {
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="My Orders"
-                to="/dashboard/payment-history"
+                to="/dashboard/my-orders"
               >
                 <TiShoppingCart color="#FEA116" />
                 <span className="is-drawer-close:hidden">My Orders</span>
