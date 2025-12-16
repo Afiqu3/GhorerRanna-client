@@ -138,7 +138,7 @@ const OrderRequests = () => {
         bgColor: 'rgba(16, 185, 129, 0.1)',
       },
       delivered: {
-        color: '#0F172B',
+        color: 'white',
         text: 'Delivered',
         bgColor: 'rgba(15, 23, 43, 0.1)',
       },
@@ -153,7 +153,7 @@ const OrderRequests = () => {
 
     return (
       <span
-        className="badge badge-lg font-semibold"
+        className="badge font-semibold"
         style={{
           backgroundColor: config.bgColor,
           color: config.color,
@@ -169,7 +169,6 @@ const OrderRequests = () => {
     const statusConfig = {
       pending: { color: '#FEA116', text: 'Pending' },
       paid: { color: '#10b981', text: 'Paid' },
-      refunded: { color: '#ef4444', text: 'Refunded' },
     };
 
     const config = statusConfig[status] || statusConfig.pending;
@@ -193,25 +192,20 @@ const OrderRequests = () => {
 
     if (isUpdating) return true;
 
-    switch (action) {
-      case 'cancel':
-        return order.orderStatus !== 'pending';
-      case 'accept':
-        return order.orderStatus !== 'pending';
-      case 'deliver':
-        return order.orderStatus !== 'accepted';
-      default:
-        return false;
-    }
+    if(action === 'cancel')
+      return order.orderStatus !== 'pending';
+
+    if(action === 'accept')
+      return order.orderStatus !== 'pending';
+
+    if(action === 'deliver')
+      return order.orderStatus !== 'accepted';
   };
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <span
-          className="loading loading-spinner loading-lg"
-          style={{ color: '#FEA116' }}
-        ></span>
+        <span className="loading loading-spinner loading-lg text-secondary"></span>
       </div>
     );
   }
@@ -225,10 +219,11 @@ const OrderRequests = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-3">
-            <FaShoppingBag className="w-8 h-8" style={{ color: '#FEA116' }} />
+            <FaShoppingBag className="w-8 h-8" color="#FEA116" />
             <h1
-              className="text-3xl sm:text-4xl font-bold"
-              style={{ color: '#0F172B' }}
+              className={`text-3xl sm:text-4xl font-bold ${
+                theme === 'dark' ? 'text-white' : 'text-primary'
+              }`}
             >
               Order Requests
             </h1>
@@ -245,8 +240,9 @@ const OrderRequests = () => {
               <div className="stat">
                 <div className="stat-title">Total Orders</div>
                 <div
-                  className="stat-value text-primary"
-                  style={{ color: '#0F172B' }}
+                  className={`stat-value ${
+                    theme === 'dark' ? 'text-white' : 'text-primary'
+                  }`}
                 >
                   {orders.length}
                 </div>
@@ -255,8 +251,8 @@ const OrderRequests = () => {
             <div className="stats shadow">
               <div className="stat">
                 <div className="stat-title">Pending</div>
-                <div className="stat-value" style={{ color: '#FEA116' }}>
-                  {orders.filter((o) => o.status === 'pending').length}
+                <div className="stat-value text-secondary">
+                  {orders.filter((o) => o.orderStatus === 'pending').length}
                 </div>
               </div>
             </div>
@@ -264,7 +260,7 @@ const OrderRequests = () => {
               <div className="stat">
                 <div className="stat-title">Accepted</div>
                 <div className="stat-value text-success">
-                  {orders.filter((o) => o.status === 'accepted').length}
+                  {orders.filter((o) => o.orderStatus === 'accepted').length}
                 </div>
               </div>
             </div>
@@ -274,13 +270,11 @@ const OrderRequests = () => {
         {/* Orders List */}
         {orders.length === 0 ? (
           <div className="text-center py-16">
-            <FaShoppingBag
-              className="w-20 h-20 mx-auto mb-4 opacity-30"
-              style={{ color: '#FEA116' }}
-            />
+            <FaShoppingBag className="w-20 h-20 mx-auto mb-4 opacity-30 text-secondary" />
             <h3
-              className="text-2xl font-semibold mb-2"
-              style={{ color: '#0F172B' }}
+              className={`text-2xl font-semibold mb-2 ${
+                theme === 'dark' ? 'text-white' : 'text-primary'
+              }`}
             >
               No Orders Yet
             </h3>
@@ -299,63 +293,48 @@ const OrderRequests = () => {
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
-                      <h3
-                        className="text-xl font-bold mb-2"
-                        style={{ color: '#0F172B' }}
-                      >
+                      <h3 className="text-xl font-bold mb-2 text-white">
                         {order.mealName}
                       </h3>
                       <div className="flex flex-wrap gap-2">
-                        {getStatusBadge(order.status)}
-                        {getPaymentStatusBadge(order.paymentStatus)}
+                        <p>Order Status: {getStatusBadge(order.orderStatus)}</p>
+                        <p>
+                          Payment Status:{' '}
+                          {getPaymentStatusBadge(order.paymentStatus)}
+                        </p>
                       </div>
                     </div>
-                    <BiSolidPurchaseTag
-                      className="w-8 h-8"
-                      style={{ color: '#FEA116' }}
-                    />
+                    <BiSolidPurchaseTag className="w-8 h-8" color="#FEA116" />
                   </div>
 
                   {/* Order Details Grid */}
                   <div className="grid grid-cols-2 gap-3 mb-4">
                     {/* Price */}
                     <div className="flex items-center gap-2">
-                      <MdAttachMoney
-                        className="w-5 h-5"
-                        style={{ color: '#FEA116' }}
-                      />
+                      <MdAttachMoney className="w-5 h-5" color="#FEA116" />
                       <div>
                         <p className="text-xs text-base-content/70">Price</p>
                         <p className="font-semibold">
-                          ৳{order.price.toFixed(2)}
+                          ${order.price.toFixed(2)}
                         </p>
                       </div>
                     </div>
 
                     {/* Quantity */}
                     <div className="flex items-center gap-2">
-                      <FaUtensils
-                        className="w-5 h-5"
-                        style={{ color: '#FEA116' }}
-                      />
+                      <FaUtensils className="w-5 h-5" color="#FEA116" />
                       <div>
                         <p className="text-xs text-base-content/70">Quantity</p>
-                        <p className="font-semibold">×{order.quantity}</p>
+                        <p className="font-semibold">x{order.quantity}</p>
                       </div>
                     </div>
 
                     {/* Total */}
-                    <div
-                      className="col-span-2 p-3 rounded-lg"
-                      style={{ backgroundColor: 'rgba(254, 161, 22, 0.1)' }}
-                    >
+                    <div className="col-span-2 p-3 rounded-lg bg-[#fea1161a]">
                       <div className="flex items-center justify-between">
                         <span className="font-semibold">Total Amount:</span>
-                        <span
-                          className="text-xl font-bold"
-                          style={{ color: '#FEA116' }}
-                        >
-                          ৳{order.totalPrice.toFixed(2)}
+                        <span className="text-xl font-bold" color="#FEA116">
+                          ${order.totalPrice.toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -364,24 +343,18 @@ const OrderRequests = () => {
                   {/* Customer Info */}
                   <div className="space-y-2 mb-4 p-3 rounded-lg bg-base-200/50">
                     <div className="flex items-center gap-2">
-                      <MdEmail
-                        className="w-4 h-4"
-                        style={{ color: '#FEA116' }}
-                      />
+                      <MdEmail className="w-4 h-4" color="#FEA116" />
                       <p className="text-sm break-all">{order.userEmail}</p>
                     </div>
                     <div className="flex items-start gap-2">
                       <MdLocationOn
                         className="w-4 h-4 mt-0.5 shrink-0"
-                        style={{ color: '#FEA116' }}
+                        color="#FEA116"
                       />
                       <p className="text-sm">{order.userAddress}</p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <MdAccessTime
-                        className="w-4 h-4"
-                        style={{ color: '#FEA116' }}
-                      />
+                      <MdAccessTime className="w-4 h-4" color="#FEA116" />
                       <p className="text-sm">{formatDate(order.orderTime)}</p>
                     </div>
                   </div>
