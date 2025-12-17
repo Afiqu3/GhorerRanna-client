@@ -123,7 +123,9 @@ const MealDetails = () => {
     try {
       const reviewData = {
         mealId: meal._id,
+        mealName: meal.foodName,
         reviewerName: user.displayName,
+        userEmail: user.email,
         reviewerImage: user.photoURL,
         rating: parseInt(data.rating),
         comment: data.comment,

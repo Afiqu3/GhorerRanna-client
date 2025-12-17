@@ -180,7 +180,6 @@ const UpdateMeal = () => {
                 Update Meal
               </h1>
             </div>
-            <p className="text-base-content/70">Edit your meal information</p>
           </div>
         </div>
 

@@ -225,13 +225,6 @@ const OrderRequests = () => {
               Order Requests
             </h1>
           </div>
-          <p
-            className={`text-base-content/70 ${
-              theme === 'dark' ? 'text-white' : 'text-primary'
-            }`}
-          >
-            Manage all orders for your meals
-          </p>
         </div>
 
         {/* Orders Count */}
@@ -239,7 +232,7 @@ const OrderRequests = () => {
           <div className="mb-6 flex flex-wrap gap-4 justify-center">
             <div className="stats shadow">
               <div className="stat">
-                <div className="stat-title">Total Orders</div>
+                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Total Orders</h1>
                 <div
                   className={`stat-value ${
                     theme === 'dark' ? 'text-white' : 'text-primary'
@@ -251,7 +244,7 @@ const OrderRequests = () => {
             </div>
             <div className="stats shadow">
               <div className="stat">
-                <div className="stat-title">Pending</div>
+                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Pending</h1>
                 <div className="stat-value text-secondary">
                   {orders.filter((o) => o.orderStatus === 'pending').length}
                 </div>
@@ -259,7 +252,7 @@ const OrderRequests = () => {
             </div>
             <div className="stats shadow">
               <div className="stat">
-                <div className="stat-title">Accepted</div>
+                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Accepted</h1>
                 <div className="stat-value text-success">
                   {orders.filter((o) => o.orderStatus === 'accepted').length}
                 </div>

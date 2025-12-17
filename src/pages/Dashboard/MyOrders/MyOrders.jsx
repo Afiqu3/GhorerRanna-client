@@ -40,32 +40,6 @@ const MyOrders = () => {
   }, [user, axiosSecure]);
 
   const handlePayment = async (order) => {
-    // app.post('/create-payment-session', verifyJWTToken, async (req, res) => {
-    //   const orderInfo = req.body;
-    //   const amount = orderInfo.price * 100;
-    //   const session = await stripe.checkout.sessions.create({
-    //     line_items: [
-    //       {
-    //         price_data: {
-    //           currency: 'usd',
-    //           unit_amount: amount,
-    //           product_data: {
-    //             name: `Please pay for ${orderInfo.mealName}`,
-    //           },
-    //           quantity: orderInfo.quantity,
-    //         },
-    //       },
-    //     ],
-    //     mode: 'payment',
-    //     metadata: {
-    //       userEmail: orderInfo.mealName,
-    //       orderId: orderInfo._id,
-    //     },
-    //     success_url: `${process.env.SITE_DOMAIN}/dashboard/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-    //     cancel_url: `${process.env.SITE_DOMAIN}/dashboard/my-orders`,
-    //   });
-    //   res.send({ url: session.url });
-    // });
     try {
       const response = await axiosSecure.post('/create-payment-session', {
         ...order,
@@ -185,13 +159,6 @@ const MyOrders = () => {
               My Orders
             </h1>
           </div>
-          <p
-            className={`text-base-content/70 ${
-              theme === 'dark' ? 'text-white' : 'text-primary'
-            }`}
-          >
-            Track and manage all your orders
-          </p>
         </div>
 
         {/* Orders Statistics */}
@@ -199,7 +166,7 @@ const MyOrders = () => {
           <div className="mb-6 flex flex-wrap gap-4 justify-center">
             <div className="stats shadow">
               <div className="stat">
-                <div className="stat-title">Total Orders</div>
+                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Total Orders</h1>
                 <div
                   className={`stat-value ${
                     theme === 'dark' ? 'text-white' : 'text-primary'
@@ -211,7 +178,7 @@ const MyOrders = () => {
             </div>
             <div className="stats shadow">
               <div className="stat">
-                <div className="stat-title">Pending Payment</div>
+                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Pending Payment</h1>
                 <div className="stat-value text-secondary">
                   {orders.filter((o) => o.paymentStatus === 'pending').length}
                 </div>
@@ -219,7 +186,7 @@ const MyOrders = () => {
             </div>
             <div className="stats shadow">
               <div className="stat">
-                <div className="stat-title">Delivered</div>
+                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Delivered</h1>
                 <div className="stat-value text-success">
                   {orders.filter((o) => o.orderStatus === 'delivered').length}
                 </div>

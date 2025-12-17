@@ -115,7 +115,7 @@ const DashboardLayout = () => {
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="My Review"
-                to="/dashboard/assigned-deliveries"
+                to="/dashboard/my-review"
               >
                 <MdRateReview color="#FEA116" />
                 <span className="is-drawer-close:hidden">My Review</span>
@@ -125,7 +125,7 @@ const DashboardLayout = () => {
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Favorite Meal"
-                to="/dashboard/completed-deliveries"
+                to="/dashboard/favorite-meal"
               >
                 <MdOutlineFavorite color="#FEA116" />
                 <span className="is-drawer-close:hidden">Favorite Meal</span>

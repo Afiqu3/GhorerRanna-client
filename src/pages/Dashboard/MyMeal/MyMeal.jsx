@@ -117,7 +117,6 @@ const MyMeals = () => {
               My Meals
             </h1>
           </div>
-          <p className="text-base-content/70">Manage all your created meals</p>
         </div>
 
         {meals.length === 0 ? (

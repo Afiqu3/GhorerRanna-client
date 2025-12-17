@@ -165,9 +165,6 @@ const CreateMeal = () => {
               Create New Meal
             </h1>
           </div>
-          <p className="text-base-content/70">
-            Add a delicious meal to your menu
-          </p>
         </div>
 
         <div className="card bg-base-100 shadow-xl">
