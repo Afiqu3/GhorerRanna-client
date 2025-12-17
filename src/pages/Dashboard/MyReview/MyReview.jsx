@@ -150,9 +150,7 @@ const MyReviews = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <span
-          className="loading loading-spinner loading-lg text-secondary"
-        ></span>
+        <span className="loading loading-spinner loading-lg text-secondary"></span>
       </div>
     );
   }
@@ -182,8 +180,18 @@ const MyReviews = () => {
           <div className="mb-6 text-center">
             <div className="stats shadow">
               <div className="stat">
-                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Total Reviews</h1>
-                <div className={`stat-value ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>
+                <h1
+                  className={`stat-title ${
+                    theme === 'dark' ? 'text-white' : 'text-primary'
+                  }`}
+                >
+                  Total Reviews
+                </h1>
+                <div
+                  className={`stat-value ${
+                    theme === 'dark' ? 'text-white' : 'text-primary'
+                  }`}
+                >
                   {reviews.length}
                 </div>
               </div>
@@ -199,7 +207,9 @@ const MyReviews = () => {
               color="#FEA116"
             />
             <h3
-              className={`text-2xl font-semibold mb-2 ${theme === 'dark' ? 'text-white' : 'text-primary'}`}
+              className={`text-2xl font-semibold mb-2 ${
+                theme === 'dark' ? 'text-white' : 'text-primary'
+              }`}
             >
               No Reviews Yet
             </h3>
@@ -230,16 +240,12 @@ const MyReviews = () => {
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
-                      <h3
-                        className="text-xl font-bold mb-2 text-white"
-                      >
+                      <h3 className="text-xl font-bold mb-2 text-white">
                         {review.mealName}
                       </h3>
                       <div className="flex items-center gap-2 mb-2">
                         {renderStars(review.rating)}
-                        <span
-                          className="font-bold text-lg text-secondary"
-                        >
+                        <span className="font-bold text-lg text-secondary">
                           {review.rating}.0
                         </span>
                       </div>
@@ -284,9 +290,7 @@ const MyReviews = () => {
           <div className="modal modal-open">
             <div className="modal-box max-w-2xl">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-bold text-2xl text-white">
-                  Edit Review
-                </h3>
+                <h3 className="font-bold text-2xl text-white">Edit Review</h3>
                 <button
                   onClick={closeEditModal}
                   className="btn btn-sm btn-circle"
@@ -308,9 +312,7 @@ const MyReviews = () => {
               <div>
                 {/* Rating */}
                 <div className="mb-6">
-                  <label className="label mb-2">
-                      Rating
-                  </label>
+                  <label className="label mb-2">Rating</label>
                   <select
                     className="select select-bordered w-full"
                     {...register('rating', { required: 'Rating is required' })}
@@ -333,9 +335,7 @@ const MyReviews = () => {
 
                 {/* Comment */}
                 <div className="mb-6">
-                  <label className="label mb-2">
-                      Comment
-                  </label>
+                  <label className="label mb-2">Comment</label>
                   <textarea
                     className="textarea textarea-bordered w-full h-32 focus:outline-none focus:border-2"
                     placeholder="Share your experience..."
