@@ -185,15 +185,16 @@ const DashboardLayout = () => {
               </NavLink>
             </li>
             <li>
-              <button
+              <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Platform Statistics"
+                to={'/dashboard/platform-statistics'}
               >
                 <GrDocumentPerformance color="#FEA116" />
                 <span className="is-drawer-close:hidden">
                   Platform Statistics
                 </span>
-              </button>
+              </NavLink>
             </li>
           </ul>
         </div>
