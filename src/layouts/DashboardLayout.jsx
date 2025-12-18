@@ -165,13 +165,14 @@ const DashboardLayout = () => {
 
             {/* List item */}
             <li>
-              <button
+              <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage User"
+                data-tip="Manage Users"
+                to={'/dashboard/manage-users'}
               >
                 <MdManageAccounts color="#FEA116" />
-                <span className="is-drawer-close:hidden">Manage User</span>
-              </button>
+                <span className="is-drawer-close:hidden">Manage Users</span>
+              </NavLink>
             </li>
             <li>
               <NavLink
