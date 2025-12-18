@@ -174,13 +174,14 @@ const DashboardLayout = () => {
               </button>
             </li>
             <li>
-              <button
+              <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Mange request"
+                data-tip="Mange requests"
+                to={'/dashboard/manage-requests'}
               >
                 <FaUserShield color="#FEA116" />
-                <span className="is-drawer-close:hidden">Mange request</span>
-              </button>
+                <span className="is-drawer-close:hidden">Mange requests</span>
+              </NavLink>
             </li>
             <li>
               <button
