@@ -22,6 +22,7 @@ import FavoriteMeal from '../pages/Dashboard/FavoriteMeal/FavoriteMeal';
 import ManageRequests from '../pages/Dashboard/ManageRequests/ManageRequests';
 import ManageUsers from '../pages/Dashboard/ManageUsers/ManageUsers';
 import PlatformStatistics from '../pages/Dashboard/PlatformStatistics/PlatformStatistics';
+import Meals from '../pages/Meals/Meals';
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: 'meals',
+        Component: Meals,
       },
       {
         path: 'mealDetails/:mealId',

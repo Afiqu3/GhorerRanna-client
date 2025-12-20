@@ -15,23 +15,17 @@ const Error = () => {
         className="text-center"
       >
         <h1
-          className={`text-[10rem] font-extrabold ${
-            theme === 'dark' ? 'text-white' : 'text-primary'
-          }`}
+          className={`text-[10rem] font-extrabold text-primary`}
         >
           404
         </h1>
         <p
-          className={`text-xl md:text-2xl font-semibold mb-4 ${
-            theme === 'dark' ? 'text-gray-300' : 'text-primary'
-          }`}
+          className={`text-xl md:text-2xl font-semibold mb-4 text-primary`}
         >
           Oops! Page Not Found
         </p>
         <p
-          className={`text-md md:text-lg mb-8 ${
-            theme === 'dark' ? 'text-gray-400' : 'text-primary'
-          }`}
+          className={`text-md md:text-lg mb-8 text-primary`}
         >
           The page you are looking for might have been removed or is temporarily
           unavailable.
