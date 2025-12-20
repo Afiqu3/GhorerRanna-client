@@ -21,6 +21,8 @@ const DashboardLayout = () => {
   const { loading } = useAuth();
   const { pathname } = useLocation();
 
+  console.log(role, status);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -100,102 +102,119 @@ const DashboardLayout = () => {
               </NavLink>
             </li>
 
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Orders"
-                to="/dashboard/my-orders"
-              >
-                <TiShoppingCart color="#FEA116" />
-                <span className="is-drawer-close:hidden">My Orders</span>
-              </NavLink>
-            </li>
+            {role === 'user' && (
+              <>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Orders"
+                    to="/dashboard/my-orders"
+                  >
+                    <TiShoppingCart color="#FEA116" />
+                    <span className="is-drawer-close:hidden">My Orders</span>
+                  </NavLink>
+                </li>
 
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Review"
-                to="/dashboard/my-review"
-              >
-                <MdRateReview color="#FEA116" />
-                <span className="is-drawer-close:hidden">My Review</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Favorite Meal"
-                to="/dashboard/favorite-meal"
-              >
-                <MdOutlineFavorite color="#FEA116" />
-                <span className="is-drawer-close:hidden">Favorite Meal</span>
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Review"
+                    to="/dashboard/my-review"
+                  >
+                    <MdRateReview color="#FEA116" />
+                    <span className="is-drawer-close:hidden">My Review</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Favorite Meal"
+                    to="/dashboard/favorite-meal"
+                  >
+                    <MdOutlineFavorite color="#FEA116" />
+                    <span className="is-drawer-close:hidden">
+                      Favorite Meal
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Create meal"
-                to="/dashboard/create-meal"
-              >
-                <IoMdAddCircle color="#FEA116" />
-                <span className="is-drawer-close:hidden">Create meal</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Meals"
-                to="/dashboard/my-meals"
-              >
-                <GiMeal color="#FEA116" />
-                <span className="is-drawer-close:hidden">My Meals</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Order Requests"
-                to="/dashboard/order-requests"
-              >
-                <CiSquareQuestion color="#FEA116" />
-                <span className="is-drawer-close:hidden">Order Requests</span>
-              </NavLink>
-            </li>
+            {role === 'chef' && (
+              <>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Create meal"
+                    to="/dashboard/create-meal"
+                  >
+                    <IoMdAddCircle color="#FEA116" />
+                    <span className="is-drawer-close:hidden">Create meal</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Meals"
+                    to="/dashboard/my-meals"
+                  >
+                    <GiMeal color="#FEA116" />
+                    <span className="is-drawer-close:hidden">My Meals</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Order Requests"
+                    to="/dashboard/order-requests"
+                  >
+                    <CiSquareQuestion color="#FEA116" />
+                    <span className="is-drawer-close:hidden">
+                      Order Requests
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
-            {/* List item */}
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage Users"
-                to={'/dashboard/manage-users'}
-              >
-                <MdManageAccounts color="#FEA116" />
-                <span className="is-drawer-close:hidden">Manage Users</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Mange requests"
-                to={'/dashboard/manage-requests'}
-              >
-                <FaUserShield color="#FEA116" />
-                <span className="is-drawer-close:hidden">Mange requests</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Platform Statistics"
-                to={'/dashboard/platform-statistics'}
-              >
-                <GrDocumentPerformance color="#FEA116" />
-                <span className="is-drawer-close:hidden">
-                  Platform Statistics
-                </span>
-              </NavLink>
-            </li>
+            {role === 'admin' && (
+              <>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Users"
+                    to={'/dashboard/manage-users'}
+                  >
+                    <MdManageAccounts color="#FEA116" />
+                    <span className="is-drawer-close:hidden">Manage Users</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Mange requests"
+                    to={'/dashboard/manage-requests'}
+                  >
+                    <FaUserShield color="#FEA116" />
+                    <span className="is-drawer-close:hidden">
+                      Mange requests
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Platform Statistics"
+                    to={'/dashboard/platform-statistics'}
+                  >
+                    <GrDocumentPerformance color="#FEA116" />
+                    <span className="is-drawer-close:hidden">
+                      Platform Statistics
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
