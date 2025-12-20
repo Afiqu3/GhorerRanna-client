@@ -23,6 +23,9 @@ import ManageRequests from '../pages/Dashboard/ManageRequests/ManageRequests';
 import ManageUsers from '../pages/Dashboard/ManageUsers/ManageUsers';
 import PlatformStatistics from '../pages/Dashboard/PlatformStatistics/PlatformStatistics';
 import Meals from '../pages/Meals/Meals';
+import ChefRouter from './ChefRouter';
+import AdminRouter from './AdminRouter';
+import ActiveRouter from './ActiveRouter';
 
 export const router = createBrowserRouter([
   {
@@ -49,7 +52,9 @@ export const router = createBrowserRouter([
         path: 'order/:mealId',
         element: (
           <PrivateRouter>
-            <Order></Order>
+            <ActiveRouter>
+              <Order></Order>
+            </ActiveRouter>
           </PrivateRouter>
         ),
       },
@@ -87,19 +92,37 @@ export const router = createBrowserRouter([
       },
       {
         path: 'create-meal',
-        Component: CreateMeal,
+        element: (
+          <ChefRouter>
+            <ActiveRouter>
+              <CreateMeal></CreateMeal>
+            </ActiveRouter>
+          </ChefRouter>
+        ),
       },
       {
         path: 'my-meals',
-        Component: MyMeal,
+        element: (
+          <ChefRouter>
+            <MyMeal></MyMeal>
+          </ChefRouter>
+        ),
       },
       {
         path: 'update-meal/:mealId',
-        Component: UpdateMeal,
+        element: (
+          <ChefRouter>
+            <UpdateMeal></UpdateMeal>
+          </ChefRouter>
+        ),
       },
       {
         path: 'order-requests',
-        Component: OrderRequests,
+        element: (
+          <ChefRouter>
+            <OrderRequests></OrderRequests>
+          </ChefRouter>
+        ),
       },
       {
         path: 'my-orders',
@@ -119,15 +142,27 @@ export const router = createBrowserRouter([
       },
       {
         path: 'manage-requests',
-        Component: ManageRequests,
+        element: (
+          <AdminRouter>
+            <ManageRequests></ManageRequests>
+          </AdminRouter>
+        ),
       },
       {
         path: 'manage-users',
-        Component: ManageUsers,
+        element: (
+          <AdminRouter>
+            <ManageUsers></ManageUsers>
+          </AdminRouter>
+        ),
       },
       {
         path: 'platform-statistics',
-        Component: PlatformStatistics,
+        element: (
+          <AdminRouter>
+            <PlatformStatistics></PlatformStatistics>
+          </AdminRouter>
+        ),
       },
     ],
   },

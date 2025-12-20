@@ -25,8 +25,8 @@ const Meals = () => {
           page: currentPage,
           limit: mealsPerPage,
           sort: sortOrder,
-          search: searchTerm
-        }
+          search: searchTerm,
+        },
       });
       setMeals(response.data.meals);
       setTotalMeals(response.data.totalMeals);
@@ -126,7 +126,6 @@ const Meals = () => {
             <span className="loading loading-spinner loading-lg text-secondary"></span>
           </div>
         ) : meals.length === 0 ? (
-          /* Empty State */
           <div className="text-center py-20">
             <p className="text-xl text-base-content/70">No meals found</p>
             {searchTerm && (

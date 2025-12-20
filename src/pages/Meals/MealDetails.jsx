@@ -83,7 +83,6 @@ const MealDetails = () => {
     fetchReviews();
   }, [mealId, axiosSecure, user]);
 
-  // console.log(isFavorite);
 
   const handleAddToFavorites = async () => {
     if (isFavorite) {
@@ -113,7 +112,6 @@ const MealDetails = () => {
   };
 
   const handleOrderNow = () => {
-    // Navigate to order page - replace with your actual navigation
     navigate(`/order/${mealId}`);
   };
 
@@ -139,10 +137,8 @@ const MealDetails = () => {
         reset();
         setShowReviewForm(false);
 
-        // Add new review to the list
         setReviews([reviewData, ...reviews]);
 
-        // Update meal rating
         const updatedRating =
           (meal.rating * (meal.reviewCount || 0) + reviewData.rating) /
           ((meal.reviewCount || 0) + 1);
@@ -202,7 +198,7 @@ const MealDetails = () => {
 
   return (
     <div
-      className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 my-30"
+      className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 my-40"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
       <div className="max-w-6xl mx-auto">

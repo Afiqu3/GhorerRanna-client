@@ -75,7 +75,6 @@ const Order = () => {
   const onSubmit = async (data) => {
     const totalPrice = calculateTotal();
 
-    // Show confirmation dialog
     const result = await Swal.fire({
       title: 'Confirm Order',
       html: `

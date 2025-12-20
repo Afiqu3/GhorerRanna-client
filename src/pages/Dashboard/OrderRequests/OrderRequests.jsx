@@ -38,8 +38,8 @@ const OrderRequests = () => {
         const chef = userResponse.data;
         setChefInfo(chef);
 
-        // const ordersResponse = await axiosSecure.get(`/orders/${chef.chefId}`);
-        const ordersResponse = await axiosSecure.get(`/orders/123`);
+        const ordersResponse = await axiosSecure.get(`/orders/${chef.chefId}`);
+        // const ordersResponse = await axiosSecure.get(`/orders/123`);
         setOrders(ordersResponse.data);
       } catch (error) {
         console.error('Error fetching data:', error);
