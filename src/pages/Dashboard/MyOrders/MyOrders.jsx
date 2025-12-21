@@ -75,7 +75,7 @@ const MyOrders = () => {
         bgColor: 'rgba(16, 185, 129, 0.1)',
       },
       delivered: {
-        color: '#0F172B',
+        color: '#FFFF',
         text: 'Delivered',
         bgColor: 'rgba(15, 23, 43, 0.1)',
       },
@@ -238,7 +238,7 @@ const MyOrders = () => {
             </p>
             <button
               onClick={() => (window.location.href = '/meals')}
-              className="btn text-white font-semibold border-0 bg-secondary"
+              className="btn text-white font-semibold border-0 bg-secondary shadow-none"
             >
               <FaUtensils className="w-5 h-5" />
               Browse Meals
@@ -249,7 +249,7 @@ const MyOrders = () => {
             {orders.map((order) => (
               <div
                 key={order._id}
-                className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="card bg-primary text-white shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 <div className="card-body p-6">
                   {/* Header */}
@@ -275,7 +275,7 @@ const MyOrders = () => {
                     <div className="flex items-center gap-2">
                       <MdAttachMoney className="w-5 h-5" color="#FEA116" />
                       <div>
-                        <p className="text-xs text-base-content/70">Price</p>
+                        <p className="text-xs text-[#ABB6C8]">Price</p>
                         <p className="font-semibold">
                           ${order.price.toFixed(2)}
                         </p>
@@ -286,7 +286,7 @@ const MyOrders = () => {
                     <div className="flex items-center gap-2">
                       <FaUtensils className="w-5 h-5" color="#FEA116" />
                       <div>
-                        <p className="text-xs text-base-content/70">Quantity</p>
+                        <p className="text-xs text-[#ABB6C8]">Quantity</p>
                         <p className="font-semibold">x{order.quantity}</p>
                       </div>
                     </div>
@@ -303,7 +303,7 @@ const MyOrders = () => {
                   </div>
 
                   {/* Chef & Delivery Info */}
-                  <div className="space-y-2 mb-4 p-3 rounded-lg bg-base-200/50">
+                  <div className="space-y-2 mb-4 p-3 rounded-lg bg-[#131A27]">
                     <div className="flex items-center gap-2">
                       <MdPerson className="w-4 h-4" color="#FEA116" />
                       <p className="text-sm">
@@ -342,7 +342,7 @@ const MyOrders = () => {
                       <button
                         onClick={() => handlePayment(order)}
                         // disabled={processingPayment === order._id}
-                        className="btn btn-lg w-full text-white font-semibold border-0 bg-primary"
+                        className="btn btn-lg w-full text-white font-semibold border border-white bg-primary shadow-none"
                       >
                         <FaCreditCard className="w-5 h-5" />
                         Pay Now - {order.totalPrice.toFixed(2)}

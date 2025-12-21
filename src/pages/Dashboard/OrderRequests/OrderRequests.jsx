@@ -303,7 +303,7 @@ const OrderRequests = () => {
             {orders.map((order) => (
               <div
                 key={order._id}
-                className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="card bg-[#131A27] text-white shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 <div className="card-body p-6">
                   {/* Header */}
@@ -329,7 +329,7 @@ const OrderRequests = () => {
                     <div className="flex items-center gap-2">
                       <MdAttachMoney className="w-5 h-5" color="#FEA116" />
                       <div>
-                        <p className="text-xs text-base-content/70">Price</p>
+                        <p className="text-xs text-[#ABB6C8]">Price</p>
                         <p className="font-semibold">
                           ${order.price.toFixed(2)}
                         </p>
@@ -340,7 +340,7 @@ const OrderRequests = () => {
                     <div className="flex items-center gap-2">
                       <FaUtensils className="w-5 h-5" color="#FEA116" />
                       <div>
-                        <p className="text-xs text-base-content/70">Quantity</p>
+                        <p className="text-xs text-[#ABB6C8]">Quantity</p>
                         <p className="font-semibold">x{order.quantity}</p>
                       </div>
                     </div>
@@ -357,7 +357,7 @@ const OrderRequests = () => {
                   </div>
 
                   {/* Customer Info */}
-                  <div className="space-y-2 mb-4 p-3 rounded-lg bg-base-200/50">
+                  <div className="space-y-2 mb-4 p-3 rounded-lg bg-[#131A27]">
                     <div className="flex items-center gap-2">
                       <MdEmail className="w-4 h-4" color="#FEA116" />
                       <p className="text-sm break-all">{order.userEmail}</p>
@@ -380,7 +380,7 @@ const OrderRequests = () => {
                     <button
                       onClick={() => handleCancel(order._id)}
                       disabled={isButtonDisabled(order, 'cancel')}
-                      className="btn btn-sm flex-1 text-white font-semibold border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="btn btn-sm flex-1 text-white font-semibold border-0 disabled:opacity-50 disabled:cursor-not-allowed shadow-none"
                       style={{
                         backgroundColor: isButtonDisabled(order, 'cancel')
                           ? '#9ca3af'
@@ -400,7 +400,7 @@ const OrderRequests = () => {
                     <button
                       onClick={() => handleAccept(order._id)}
                       disabled={isButtonDisabled(order, 'accept')}
-                      className="btn btn-sm flex-1 text-white font-semibold border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="btn btn-sm flex-1 text-white font-semibold border-0 disabled:opacity-50 disabled:cursor-not-allowed shadow-none"
                       style={{
                         backgroundColor: isButtonDisabled(order, 'accept')
                           ? '#9ca3af'
@@ -420,7 +420,7 @@ const OrderRequests = () => {
                     <button
                       onClick={() => handleDeliver(order._id)}
                       disabled={isButtonDisabled(order, 'deliver')}
-                      className="btn btn-sm flex-1 text-white font-semibold border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="btn btn-sm flex-1 text-white font-semibold border-0 disabled:opacity-50 disabled:cursor-not-allowed shadow-none"
                       style={{
                         backgroundColor: isButtonDisabled(order, 'deliver')
                           ? '#9ca3af'

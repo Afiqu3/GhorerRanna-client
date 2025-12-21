@@ -95,7 +95,7 @@ const FavoriteMeals = () => {
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
-       <title>Favorite Meal</title>
+      <title>Favorite Meal</title>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -164,9 +164,9 @@ const FavoriteMeals = () => {
         ) : (
           <>
             {/* Desktop Table View */}
-            <div className="hidden lg:block card bg-base-100 shadow-xl overflow-hidden">
+            <div className="hidden lg:block card bg-[#1D232A] text-white shadow-xl overflow-hidden">
               <div className="overflow-x-auto">
-                <table className="table table-zebra">
+                <table className="table">
                   {/* Table Head */}
                   <thead className="bg-primary">
                     <tr>
@@ -215,7 +215,7 @@ const FavoriteMeals = () => {
                               handleDelete(favorite._id, favorite.mealName)
                             }
                             disabled={deletingId === favorite._id}
-                            className="btn btn-sm text-white font-semibold border-0 bg-[#ef4444]"
+                            className="btn btn-sm text-white font-semibold border-0 bg-[#ef4444] shadow-none"
                           >
                             {deletingId === favorite._id ? (
                               <span className="loading loading-spinner loading-xs"></span>
@@ -237,7 +237,7 @@ const FavoriteMeals = () => {
             {/* Mobile Card View */}
             <div className="lg:hidden space-y-4">
               {favorites.map((favorite, index) => (
-                <div key={favorite._id} className="card bg-base-100 shadow-xl">
+                <div key={favorite._id} className="card bg-primary text-white shadow-xl">
                   <div className="card-body p-5">
                     {/* Header */}
                     <div className="flex items-start justify-between mb-3">
@@ -259,7 +259,7 @@ const FavoriteMeals = () => {
                       <div className="flex items-center gap-2">
                         <MdPerson className="w-5 h-5" color="#FEA116" />
                         <div>
-                          <p className="text-xs text-base-content/70">Chef</p>
+                          <p className="text-xs text-[#ABB6C8]">Chef</p>
                           <p className="font-semibold">{favorite.chefName}</p>
                         </div>
                       </div>
@@ -267,7 +267,7 @@ const FavoriteMeals = () => {
                       <div className="flex items-center gap-2">
                         <MdAttachMoney className="w-5 h-5" color="#FEA116" />
                         <div>
-                          <p className="text-xs text-base-content/70">Price</p>
+                          <p className="text-xs text-[#ABB6C8]">Price</p>
                           <p className="font-bold text-white">
                             ${favorite.price.toFixed(2)}
                           </p>
@@ -277,7 +277,7 @@ const FavoriteMeals = () => {
                       <div className="flex items-center gap-2">
                         <MdAccessTime className="w-5 h-5" color="#FEA116" />
                         <div>
-                          <p className="text-xs text-base-content/70">
+                          <p className="text-xs text-[#ABB6C8]">
                             Added On
                           </p>
                           <p className="font-semibold">
@@ -293,7 +293,7 @@ const FavoriteMeals = () => {
                         handleDelete(favorite._id, favorite.mealName)
                       }
                       disabled={deletingId === favorite._id}
-                      className="btn btn-sm w-full text-white font-semibold border-0 bg-[#ef4444]"
+                      className="btn btn-sm w-full text-white font-semibold border-0 bg-[#ef4444] shadow-none"
                     >
                       {deletingId === favorite._id ? (
                         <>

@@ -26,6 +26,7 @@ import Meals from '../pages/Meals/Meals';
 import ChefRouter from './ChefRouter';
 import AdminRouter from './AdminRouter';
 import ActiveRouter from './ActiveRouter';
+import UserRouter from './UserRouter';
 
 export const router = createBrowserRouter([
   {
@@ -126,19 +127,35 @@ export const router = createBrowserRouter([
       },
       {
         path: 'my-orders',
-        Component: MyOrders,
+        element: (
+          <UserRouter>
+            <MyOrders></MyOrders>
+          </UserRouter>
+        ),
       },
       {
         path: 'payment-success',
-        Component: PaymentSuccess,
+        element: (
+          <UserRouter>
+            <PaymentSuccess></PaymentSuccess>
+          </UserRouter>
+        ),
       },
       {
         path: 'my-review',
-        Component: MyReview,
+        element: (
+          <UserRouter>
+            <MyReview></MyReview>
+          </UserRouter>
+        ),
       },
       {
         path: 'favorite-meal',
-        Component: FavoriteMeal,
+        element: (
+          <UserRouter>
+            <FavoriteMeal></FavoriteMeal>
+          </UserRouter>
+        ),
       },
       {
         path: 'manage-requests',

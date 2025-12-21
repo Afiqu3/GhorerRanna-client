@@ -110,7 +110,7 @@ const ManageUsers = () => {
         bgColor: 'rgba(254, 161, 22, 0.1)',
       },
       admin: {
-        color: '#0F172B',
+        color: '#FFFF',
         text: 'Admin',
         icon: FaUserShield,
         bgColor: 'rgba(15, 23, 43, 0.1)',
@@ -273,7 +273,7 @@ const ManageUsers = () => {
         )}
 
         {/* Filters */}
-        <div className="card bg-base-100 shadow-xl mb-6">
+        <div className="card bg-primary shadow-xl mb-6">
           <div className="card-body p-4 sm:p-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {/* Search */}
@@ -281,7 +281,7 @@ const ManageUsers = () => {
                 <input
                   type="text"
                   placeholder="Search by name or email..."
-                  className="input input-bordered w-full focus:outline-none focus:border-2"
+                  className="input input-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -290,7 +290,7 @@ const ManageUsers = () => {
               {/* Role Filter */}
               <div className="form-control">
                 <select
-                  className="select select-bordered w-full focus:outline-none focus:border-2"
+                  className="select select-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   value={filterRole}
                   onChange={(e) => setFilterRole(e.target.value)}
                 >
@@ -304,7 +304,7 @@ const ManageUsers = () => {
               {/* Status Filter */}
               <div className="form-control">
                 <select
-                  className="select select-bordered w-full focus:outline-none focus:border-2"
+                  className="select select-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
                 >
@@ -331,9 +331,9 @@ const ManageUsers = () => {
         ) : (
           <>
             {/* Desktop Table View */}
-            <div className="hidden lg:block card bg-base-100 shadow-xl overflow-hidden">
+            <div className="hidden lg:block card bg-[#131A27] text-white shadow-xl overflow-hidden">
               <div className="overflow-x-auto">
-                <table className="table table-zebra">
+                <table className="table">
                   <thead className="bg-primary">
                     <tr>
                       <th className="text-white text-base">#</th>
@@ -371,7 +371,7 @@ const ManageUsers = () => {
                             <button
                               onClick={() => handleMakeFraud(user)}
                               disabled={processingEmail === user.email}
-                              className="btn btn-sm text-white font-semibold border-0 bg-[#ef4444]"
+                              className="btn btn-sm text-white font-semibold border-0 bg-[#ef4444] shadow-none"
                             >
                               {processingEmail === user.email ? (
                                 <span className="loading loading-spinner loading-xs"></span>

@@ -42,9 +42,9 @@ const DashboardLayout = () => {
             className="btn btn-square btn-ghost"
           >
             {/* Sidebar toggle icon */}
-            <IoMenu size={24} />
+            <IoMenu size={24} color='white' />
           </label>
-          <div className="px-4 font-bold">GhorerRanna Dashboard</div>
+          <div className="px-4 font-bold text-white">GhorerRanna Dashboard</div>
         </nav>
         {/* Page content here */}
         <Outlet></Outlet>

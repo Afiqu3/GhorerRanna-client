@@ -209,7 +209,7 @@ const PlatformStatistics = () => {
         {/* Charts Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Order Status Pie Chart */}
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card bg-primary text-white shadow-xl">
             <div className="card-body p-6">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-white">
                 <FaUtensils className="w-5 h-5" color="#FEA116" />
@@ -253,7 +253,7 @@ const PlatformStatistics = () => {
           </div>
 
           {/* Orders Bar Chart */}
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card bg-primary shadow-xl">
             <div className="card-body p-6">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-white">
                 <FaChartBar className="w-5 h-5" style={{ color: '#FEA116' }} />
@@ -278,7 +278,7 @@ const PlatformStatistics = () => {
         {/* Additional Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Total Orders */}
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card bg-primary shadow-xl">
             <div className="card-body p-6">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="font-bold text-lg text-white">Total Orders</h3>
@@ -287,14 +287,14 @@ const PlatformStatistics = () => {
               <p className="text-3xl font-bold text-[#10b981]">
                 {statistics.totalOrders}
               </p>
-              <p className="text-sm text-base-content/70 mt-2">
+              <p className="text-sm text-[#ABB6C8] mt-2">
                 All time orders
               </p>
             </div>
           </div>
 
           {/* Completion Rate */}
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card bg-primary shadow-xl">
             <div className="card-body p-6">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="font-bold text-lg text-white">
@@ -311,14 +311,14 @@ const PlatformStatistics = () => {
                   : 0}
                 %
               </p>
-              <p className="text-sm text-base-content/70 mt-2">
+              <p className="text-sm text-[#ABB6C8] mt-2">
                 Successfully delivered
               </p>
             </div>
           </div>
 
           {/* Average Order Value */}
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card bg-primary shadow-xl">
             <div className="card-body p-6">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="font-bold text-lg text-white">
@@ -327,14 +327,14 @@ const PlatformStatistics = () => {
                 <MdAttachMoney className="w-6 h-6" color="#10b981" />
               </div>
               <p className="text-3xl font-bold text-success">
-                ৳
+                $
                 {statistics.ordersDelivered > 0
                   ? (
                       statistics.totalPayment / statistics.ordersDelivered
                     ).toFixed(2)
                   : 0}
               </p>
-              <p className="text-sm text-base-content/70 mt-2">
+              <p className="text-sm text-[#ABB6C8] mt-2">
                 Per delivered order
               </p>
             </div>

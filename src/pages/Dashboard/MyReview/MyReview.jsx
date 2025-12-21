@@ -234,7 +234,7 @@ const MyReviews = () => {
             {reviews.map((review) => (
               <div
                 key={review._id}
-                className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="card bg-primary shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 <div className="card-body p-6">
                   {/* Header */}
@@ -249,31 +249,31 @@ const MyReviews = () => {
                           {review.rating}.0
                         </span>
                       </div>
-                      <p className="text-sm text-base-content/70">
+                      <p className="text-sm text-[#ABB6C8]">
                         {formatDate(review.date)}
                       </p>
                     </div>
                   </div>
 
                   {/* Comment */}
-                  <div className="mb-4 p-4 rounded-lg bg-base-200/50">
-                    <p className="text-base leading-relaxed">
+                  <div className="mb-4 p-4 rounded-lg bg-[#131A27]">
+                    <p className="text-base text-[#ABB6C8] leading-relaxed">
                       {review.comment}
                     </p>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-3 pt-4 border-t">
+                  <div className="flex gap-3 pt-4 border-t border-white">
                     <button
                       onClick={() => openEditModal(review)}
-                      className="btn btn-sm flex-1 text-white font-semibold border-0 bg-secondary"
+                      className="btn btn-sm flex-1 text-white font-semibold border-0 bg-secondary shadow-none"
                     >
                       <MdEdit className="w-4 h-4" />
                       Edit
                     </button>
                     <button
                       onClick={() => handleDelete(review._id, review.mealName)}
-                      className="btn btn-sm flex-1 text-white font-semibold border-0 bg-[#ef4444]"
+                      className="btn btn-sm flex-1 text-white font-semibold border-0 bg-[#ef4444] shadow-none"
                     >
                       <MdDelete className="w-4 h-4" />
                       Delete
@@ -288,7 +288,7 @@ const MyReviews = () => {
         {/* Edit Modal */}
         {editingReview && (
           <div className="modal modal-open">
-            <div className="modal-box max-w-2xl">
+            <div className="modal-box max-w-2xl bg-[#1D232A]">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-bold text-2xl text-white">Edit Review</h3>
                 <button
@@ -312,9 +312,9 @@ const MyReviews = () => {
               <div>
                 {/* Rating */}
                 <div className="mb-6">
-                  <label className="label mb-2">Rating</label>
+                  <label className="label mb-2 text-[#ABB6C8]">Rating</label>
                   <select
-                    className="select select-bordered w-full"
+                    className="select select-bordered w-full border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                     {...register('rating', { required: 'Rating is required' })}
                   >
                     <option value="">Select rating</option>
@@ -335,9 +335,9 @@ const MyReviews = () => {
 
                 {/* Comment */}
                 <div className="mb-6">
-                  <label className="label mb-2">Comment</label>
+                  <label className="label mb-2 text-[#ABB6C8]">Comment</label>
                   <textarea
-                    className="textarea textarea-bordered w-full h-32 focus:outline-none focus:border-2"
+                    className="textarea textarea-bordered w-full h-32 focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                     placeholder="Share your experience..."
                     {...register('comment', {
                       required: 'Comment is required',
@@ -357,7 +357,7 @@ const MyReviews = () => {
                   <button
                     type="button"
                     onClick={closeEditModal}
-                    className="btn flex-1"
+                    className="btn flex-1 bg-[#1D232A] text-white shadow-none border border-white"
                     disabled={isSubmitting}
                   >
                     Cancel
@@ -366,7 +366,7 @@ const MyReviews = () => {
                     type="button"
                     onClick={handleSubmit(onSubmitUpdate)}
                     disabled={isSubmitting}
-                    className="btn flex-1 text-white font-semibold border-0 bg-primary"
+                    className="btn flex-1 text-white font-semibold border-0 bg-primary shadow-none"
                   >
                     {isSubmitting ? (
                       <>
