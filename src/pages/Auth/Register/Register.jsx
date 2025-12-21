@@ -75,14 +75,16 @@ const Register = () => {
 
           updateUser(userProfile)
             .then(() => {
-              console.log('profile updated successfully');
+              // console.log('profile updated successfully');
               navigate('/');
             })
-            .catch((error) => console.log(error));
+            .catch(() => {
+              // console.log(error);
+            });
         });
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        // console.log(error);
       });
   };
 

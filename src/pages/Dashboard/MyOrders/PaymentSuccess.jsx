@@ -17,7 +17,7 @@ const PaymentSuccess = () => {
           `/payment-success?session_id=${sessionId}`
         );
         setPaymentRecorded(response.data);
-        console.log('Payment recorded:', response.data);
+        // console.log('Payment recorded:', response.data);
       } catch (error) {
         console.error('Error recording payment:', error);
       }
@@ -34,6 +34,7 @@ const PaymentSuccess = () => {
         theme === 'light' ? 'bg-white' : 'bg-black'
       }`}
     >
+      <title>Payment Success</title>
       <h1
         className={`text-4xl ${
           theme === 'light' ? 'text-primary' : 'text-white'

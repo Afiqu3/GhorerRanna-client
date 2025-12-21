@@ -1,33 +1,33 @@
 import React from 'react';
-// import useAuth from '../../../hooks/useAuth';
-// import { useLocation, useNavigate } from 'react-router';
-// import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useAuth from '../../../hooks/useAuth';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useLocation, useNavigate } from 'react-router';
 
 const SocialLogin = () => {
-//   const { signInWithGoogle } = useAuth();
-//   const location = useLocation();
-//   const navigate = useNavigate();
-//   const axiosSecure = useAxiosSecure();
+  const { signInWithGoogle } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const handleGoogleSignIn = () => {
-    // signInWithGoogle()
-    //   .then((result) => {
-    //     console.log(result.user);
-    //     // create user in the database
-    //     const userInfo = {
-    //       email: result.user.email,
-    //       displayName: result.user.displayName,
-    //       photoURL: result.user.photoURL,
-    //     };
+    signInWithGoogle()
+      .then((result) => {
+        // console.log(result.user);
+        // create user in the database
+        const userInfo = {
+          email: result.user.email,
+          displayName: result.user.displayName,
+          photoURL: result.user.photoURL,
+        };
 
-    //     axiosSecure.post('/users', userInfo).then((res) => {
-    //       console.log('user data has been stored', res.data);
-    //       navigate(location.state || '/');
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+        axiosSecure.post('/users', userInfo).then((res) => {
+          // console.log('user data has been stored', res.data);
+          navigate(location.state || '/');
+        });
+      })
+      .catch(() => {
+        // console.log(error);
+      });
   };
 
   return (

@@ -95,6 +95,7 @@ const FavoriteMeals = () => {
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
+       <title>Favorite Meal</title>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -185,10 +186,7 @@ const FavoriteMeals = () => {
                         <th>{index + 1}</th>
                         <td>
                           <div className="flex items-center gap-2">
-                            <FaUtensils
-                              className="w-4 h-4"
-                              color="#FEA116"
-                            />
+                            <FaUtensils className="w-4 h-4" color="#FEA116" />
                             <span className="font-semibold">
                               {favorite.mealName}
                             </span>
@@ -196,26 +194,18 @@ const FavoriteMeals = () => {
                         </td>
                         <td>
                           <div className="flex items-center gap-2">
-                            <MdPerson
-                              className="w-4 h-4"
-                              color="#FEA116"
-                            />
+                            <MdPerson className="w-4 h-4" color="#FEA116" />
                             {favorite.chefName}
                           </div>
                         </td>
                         <td>
-                          <span
-                            className="font-bold text-white"
-                          >
+                          <span className="font-bold text-white">
                             {favorite.price.toFixed(2)}
                           </span>
                         </td>
                         <td>
                           <div className="flex items-center gap-2">
-                            <MdAccessTime
-                              className="w-4 h-4"
-                              color="#FEA116"
-                            />
+                            <MdAccessTime className="w-4 h-4" color="#FEA116" />
                             {formatDate(favorite.addedAt)}
                           </div>
                         </td>
@@ -253,31 +243,21 @@ const FavoriteMeals = () => {
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <span
-                            className="badge font-bold bg-secondary text-white"
-                          >
+                          <span className="badge font-bold bg-secondary text-white">
                             #{index + 1}
                           </span>
                         </div>
-                        <h3
-                          className="text-lg font-bold text-white"
-                        >
+                        <h3 className="text-lg font-bold text-white">
                           {favorite.mealName}
                         </h3>
                       </div>
-                      <FaHeart
-                        className="w-6 h-6"
-                        color="#FEA116"
-                      />
+                      <FaHeart className="w-6 h-6" color="#FEA116" />
                     </div>
 
                     {/* Details */}
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center gap-2">
-                        <MdPerson
-                          className="w-5 h-5"
-                          color="#FEA116"
-                        />
+                        <MdPerson className="w-5 h-5" color="#FEA116" />
                         <div>
                           <p className="text-xs text-base-content/70">Chef</p>
                           <p className="font-semibold">{favorite.chefName}</p>
@@ -285,10 +265,7 @@ const FavoriteMeals = () => {
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <MdAttachMoney
-                          className="w-5 h-5"
-                          color="#FEA116"
-                        />
+                        <MdAttachMoney className="w-5 h-5" color="#FEA116" />
                         <div>
                           <p className="text-xs text-base-content/70">Price</p>
                           <p className="font-bold text-white">
@@ -298,10 +275,7 @@ const FavoriteMeals = () => {
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <MdAccessTime
-                          className="w-5 h-5"
-                          color="#FEA116"
-                        />
+                        <MdAccessTime className="w-5 h-5" color="#FEA116" />
                         <div>
                           <p className="text-xs text-base-content/70">
                             Added On

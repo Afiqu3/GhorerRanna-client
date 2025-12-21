@@ -43,7 +43,6 @@ const UpdateMeal = () => {
         setMealData(meal);
         setIngredients(meal.ingredients || []);
 
-        // Set form values
         setValue('foodName', meal.foodName);
         setValue('deliveryArea', meal.deliveryArea);
         setValue('foodImage', meal.foodImage);
@@ -157,6 +156,7 @@ const UpdateMeal = () => {
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
+      <title>Update Meal</title>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">

@@ -172,9 +172,14 @@ const Profile = () => {
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
+      <title>My Profile</title>
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className={`text-3xl sm:text-4xl font-bold mb-2 ${ theme === 'dark' ? 'text-white' : 'text-primary' }`}>
+          <h1
+            className={`text-3xl sm:text-4xl font-bold mb-2 ${
+              theme === 'dark' ? 'text-white' : 'text-primary'
+            }`}
+          >
             My Profile
           </h1>
         </div>

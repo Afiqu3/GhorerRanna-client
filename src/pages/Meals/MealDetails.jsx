@@ -83,7 +83,6 @@ const MealDetails = () => {
     fetchReviews();
   }, [mealId, axiosSecure, user]);
 
-
   const handleAddToFavorites = async () => {
     if (isFavorite) {
       toast.info('Already in favorites!');
@@ -201,6 +200,7 @@ const MealDetails = () => {
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 my-40"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
+      <title>{meal.foodName}</title>
       <div className="max-w-6xl mx-auto">
         {/* Meal Details Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
@@ -229,7 +229,11 @@ const MealDetails = () => {
                 </h1>
                 <button
                   onClick={handleAddToFavorites}
-                  className={`btn btn-circle btn-lg bg-secondary ${isFavorite ? 'bg-secondary text-white': 'bg-transparent text-secondary'}`}
+                  className={`btn btn-circle btn-lg bg-secondary ${
+                    isFavorite
+                      ? 'bg-secondary text-white'
+                      : 'bg-transparent text-secondary'
+                  }`}
                 >
                   {isFavorite ? (
                     <FaHeart className="w-6 h-6" />

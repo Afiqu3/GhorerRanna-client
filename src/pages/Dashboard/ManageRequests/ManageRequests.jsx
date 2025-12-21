@@ -65,7 +65,6 @@ const ManageRequests = () => {
     setProcessingId(request._id);
 
     try {
-      // Update request status
       const statusEndpoint =
         request.requestType === 'chef'
           ? `/chef-requests/${request._id}/status`
@@ -75,12 +74,10 @@ const ManageRequests = () => {
         status: 'approved',
       });
 
-      // Update user role
       await axiosSecure.patch(`/users/${request.userEmail}/role`, {
         role: request.requestType,
       });
 
-      // Update local state
       if (request.requestType === 'chef') {
         setChefRequests(
           chefRequests.map((req) =>
@@ -151,7 +148,6 @@ const ManageRequests = () => {
     setProcessingId(request._id);
 
     try {
-      // Update request status
       const statusEndpoint =
         request.requestType === 'chef'
           ? `/chef-requests/${request._id}/status`
@@ -161,7 +157,6 @@ const ManageRequests = () => {
         status: 'rejected',
       });
 
-      // Update local state
       if (request.requestType === 'chef') {
         setChefRequests(
           chefRequests.map((req) =>
@@ -278,6 +273,7 @@ const ManageRequests = () => {
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
+      <title>Manage Requests</title>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">

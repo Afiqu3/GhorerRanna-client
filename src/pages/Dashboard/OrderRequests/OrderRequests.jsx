@@ -75,7 +75,6 @@ const OrderRequests = () => {
       });
 
       if (response.data.modifiedCount > 0) {
-        // Update local state
         setOrders(
           orders.map((order) =>
             order._id === orderId ? { ...order, orderStatus: newStatus } : order
@@ -212,6 +211,7 @@ const OrderRequests = () => {
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
+      <title>Order Requests</title>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -232,7 +232,13 @@ const OrderRequests = () => {
           <div className="mb-6 flex flex-wrap gap-4 justify-center">
             <div className="stats shadow">
               <div className="stat">
-                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Total Orders</h1>
+                <h1
+                  className={`stat-title ${
+                    theme === 'dark' ? 'text-white' : 'text-primary'
+                  }`}
+                >
+                  Total Orders
+                </h1>
                 <div
                   className={`stat-value ${
                     theme === 'dark' ? 'text-white' : 'text-primary'
@@ -244,7 +250,13 @@ const OrderRequests = () => {
             </div>
             <div className="stats shadow">
               <div className="stat">
-                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Pending</h1>
+                <h1
+                  className={`stat-title ${
+                    theme === 'dark' ? 'text-white' : 'text-primary'
+                  }`}
+                >
+                  Pending
+                </h1>
                 <div className="stat-value text-secondary">
                   {orders.filter((o) => o.orderStatus === 'pending').length}
                 </div>
@@ -252,7 +264,13 @@ const OrderRequests = () => {
             </div>
             <div className="stats shadow">
               <div className="stat">
-                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Accepted</h1>
+                <h1
+                  className={`stat-title ${
+                    theme === 'dark' ? 'text-white' : 'text-primary'
+                  }`}
+                >
+                  Accepted
+                </h1>
                 <div className="stat-value text-success">
                   {orders.filter((o) => o.orderStatus === 'accepted').length}
                 </div>

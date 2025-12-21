@@ -21,7 +21,7 @@ const DashboardLayout = () => {
   const { loading } = useAuth();
   const { pathname } = useLocation();
 
-  console.log(role, status);
+  // console.log(role, status);
 
   useEffect(() => {
     window.scrollTo(0, 0);

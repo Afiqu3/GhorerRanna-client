@@ -109,7 +109,6 @@ const MyReviews = () => {
       );
 
       if (response.data.modifiedCount > 0) {
-        // Update local state
         setReviews(
           reviews.map((review) =>
             review._id === editingReview._id
@@ -160,6 +159,7 @@ const MyReviews = () => {
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
+      <title> My Review</title>
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">

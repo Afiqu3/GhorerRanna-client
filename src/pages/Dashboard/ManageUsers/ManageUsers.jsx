@@ -73,7 +73,6 @@ const ManageUsers = () => {
       });
 
       if (response.data.modifiedCount > 0) {
-        // Update local state
         setUsers(
           users.map((u) =>
             u.email === user.email ? { ...u, status: 'fraud' } : u
@@ -195,6 +194,7 @@ const ManageUsers = () => {
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
+      <title>Mange Users</title>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -352,19 +352,15 @@ const ManageUsers = () => {
                         <th>{index + 1}</th>
                         <td>
                           <div className="flex items-center gap-2">
-                            <MdPerson
-                              className="w-5 h-5"
-                              color="#FEA116"
-                            />
-                            <span className="font-semibold">{user.displayName}</span>
+                            <MdPerson className="w-5 h-5" color="#FEA116" />
+                            <span className="font-semibold">
+                              {user.displayName}
+                            </span>
                           </div>
                         </td>
                         <td>
                           <div className="flex items-center gap-2">
-                            <MdEmail
-                              className="w-4 h-4"
-                              color="#FEA116"
-                            />
+                            <MdEmail className="w-4 h-4" color="#FEA116" />
                             {user.email}
                           </div>
                         </td>
@@ -415,33 +411,23 @@ const ManageUsers = () => {
                 <div key={user._id} className="card bg-base-100 shadow-xl">
                   <div className="card-body p-5">
                     <div className="flex items-start justify-between mb-3">
-                      <span
-                        className="badge font-bold bg-secondary text-white"
-                      >
+                      <span className="badge font-bold bg-secondary text-white">
                         #{index + 1}
                       </span>
                       {getRoleBadge(user.role)}
                     </div>
 
-                    <h3
-                      className="text-lg font-bold mb-2 text-white"
-                    >
+                    <h3 className="text-lg font-bold mb-2 text-white">
                       {user.displayName}
                     </h3>
 
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center gap-2">
-                        <MdEmail
-                          className="w-4 h-4"
-                          color="#FEA116"
-                        />
+                        <MdEmail className="w-4 h-4" color="#FEA116" />
                         <p className="text-sm break-all">{user.email}</p>
                       </div>
                       <div className="flex items-center gap-2">
-                        <MdVerifiedUser
-                          className="w-4 h-4"
-                          color="#FEA116"
-                        />
+                        <MdVerifiedUser className="w-4 h-4" color="#FEA116" />
                         {getStatusBadge(user.status)}
                       </div>
                     </div>

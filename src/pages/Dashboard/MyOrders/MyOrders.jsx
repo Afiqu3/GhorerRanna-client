@@ -146,6 +146,7 @@ const MyOrders = () => {
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#fff' }}
     >
+      <title>My Orders</title>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -166,7 +167,13 @@ const MyOrders = () => {
           <div className="mb-6 flex flex-wrap gap-4 justify-center">
             <div className="stats shadow">
               <div className="stat">
-                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Total Orders</h1>
+                <h1
+                  className={`stat-title ${
+                    theme === 'dark' ? 'text-white' : 'text-primary'
+                  }`}
+                >
+                  Total Orders
+                </h1>
                 <div
                   className={`stat-value ${
                     theme === 'dark' ? 'text-white' : 'text-primary'
@@ -178,7 +185,13 @@ const MyOrders = () => {
             </div>
             <div className="stats shadow">
               <div className="stat">
-                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Pending Payment</h1>
+                <h1
+                  className={`stat-title ${
+                    theme === 'dark' ? 'text-white' : 'text-primary'
+                  }`}
+                >
+                  Pending Payment
+                </h1>
                 <div className="stat-value text-secondary">
                   {orders.filter((o) => o.paymentStatus === 'pending').length}
                 </div>
@@ -186,7 +199,13 @@ const MyOrders = () => {
             </div>
             <div className="stats shadow">
               <div className="stat">
-                <h1 className={`stat-title ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>Delivered</h1>
+                <h1
+                  className={`stat-title ${
+                    theme === 'dark' ? 'text-white' : 'text-primary'
+                  }`}
+                >
+                  Delivered
+                </h1>
                 <div className="stat-value text-success">
                   {orders.filter((o) => o.orderStatus === 'delivered').length}
                 </div>
@@ -300,7 +319,9 @@ const MyOrders = () => {
                       <MdAccessTime className="w-4 h-4" color="#FEA116" />
                       <p className="text-sm">
                         <span className="font-semibold">Delivery:</span>{' '}
-                        {order.orderStatus === 'delivered' ? 'Completed' : 'In Progress'}
+                        {order.orderStatus === 'delivered'
+                          ? 'Completed'
+                          : 'In Progress'}
                       </p>
                     </div>
                     <div className="flex items-center gap-2">

@@ -21,7 +21,7 @@ const Login = () => {
     // console.log('form data', data);
     signInUser(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         toast.success(`Welcome ${result.user.displayName}`, {
           position: 'top-center',
           autoClose: 3000,
@@ -35,8 +35,8 @@ const Login = () => {
         });
         navigate(location?.state || '/');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        // console.log(error);
       });
   };
 
@@ -95,7 +95,7 @@ const Login = () => {
             Login
           </button>
         </fieldset>
-        <p className='text-white'>
+        <p className="text-white">
           Don't have any account?{' '}
           <Link
             state={location.state}
