@@ -158,7 +158,7 @@ const MyMeals = () => {
               {meals.map((meal) => (
                 <div
                   key={meal._id}
-                  className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
+                  className="card bg-primary shadow-xl hover:shadow-2xl transition-all duration-300"
                 >
                   <figure className="relative h-48 overflow-hidden">
                     <img
@@ -186,14 +186,14 @@ const MyMeals = () => {
                       </div>
                       <div className="flex items-center gap-1 text-sm">
                         <IoMdTime className="w-4 h-4" color="#FEA116" />
-                        <span>{meal.estimatedDeliveryTime}</span>
+                        <span className='text-white'>{meal.estimatedDeliveryTime}</span>
                       </div>
                     </div>
 
                     <div className="space-y-2 mb-3">
                       <div className="flex items-center gap-2 text-sm">
                         <MdPerson className="w-4 h-4" color="#FEA116" />
-                        <span className="font-medium">
+                        <span className="font-medium text-white">
                           Chef: {meal.chefName}
                         </span>
                       </div>
@@ -216,7 +216,7 @@ const MyMeals = () => {
                           .map((ingredient, index) => (
                             <span
                               key={index}
-                              className="badge badge-sm gap-2 py-3 px-4 bg-secondary text-primary"
+                              className="badge badge-sm gap-2 py-3 px-4 bg-secondary text-primary border-0"
                             >
                               {ingredient}
                             </span>
@@ -230,17 +230,17 @@ const MyMeals = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="card-actions justify-end gap-2 pt-3 border-t">
+                    <div className="card-actions justify-end gap-2 pt-3 border-t border-white">
                       <button
                         onClick={() => handleUpdate(meal._id)}
-                        className="btn btn-sm text-white font-semibold border-0 flex-1 hover:opacity-90 bg-secondary"
+                        className="btn btn-sm text-white font-semibold border-0 flex-1 hover:opacity-90 bg-secondary shadow-none"
                       >
                         <MdEdit className="w-4 h-4" />
                         Update
                       </button>
                       <button
                         onClick={() => handleDelete(meal._id, meal.foodName)}
-                        className="btn btn-sm text-white font-semibold border-0 flex-1 hover:opacity-90 bg-primary"
+                        className="btn btn-sm text-white font-semibold border border-white flex-1 hover:opacity-90 bg-primary shadow-none"
                       >
                         <MdDelete className="w-4 h-4" />
                         Delete

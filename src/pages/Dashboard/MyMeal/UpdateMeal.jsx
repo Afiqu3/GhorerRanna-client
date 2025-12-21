@@ -184,16 +184,16 @@ const UpdateMeal = () => {
         </div>
 
         {/* Form Card */}
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-primary shadow-xl">
           <div className="card-body p-6 sm:p-8">
             <form onSubmit={handleFormSubmit}>
               {/* Food Name */}
               <div className="mb-6">
-                <label className="label mb-2">Food Name</label>
+                <label className="label mb-2 text-[#ABB6C8]">Food Name</label>
                 <input
                   type="text"
                   placeholder="e.g., Grilled Chicken Salad"
-                  className="input input-bordered w-full focus:outline-none focus:border-2"
+                  className="input input-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   {...register('foodName', {
                     required: 'Food name is required',
                   })}
@@ -209,11 +209,11 @@ const UpdateMeal = () => {
 
               {/* Delivery Area */}
               <div className="mb-6">
-                <label className="label mb-2">Delivery Area</label>
+                <label className="label mb-2 text-[#ABB6C8]">Delivery Area</label>
                 <input
                   type="text"
                   placeholder="e.g., Dhaka"
-                  className="input input-bordered w-full focus:outline-none focus:border-2"
+                  className="input input-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   {...register('deliveryArea', {
                     required: 'Delivery Area',
                   })}
@@ -229,11 +229,11 @@ const UpdateMeal = () => {
 
               {/* Food Image URL */}
               <div className="mb-6">
-                <label className="label mb-2">Food Image URL</label>
+                <label className="label mb-2 text-[#ABB6C8]">Food Image URL</label>
                 <input
                   type="url"
                   placeholder="https://example.com/image.jpg"
-                  className="input input-bordered w-full focus:outline-none focus:border-2"
+                  className="input input-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   {...register('foodImage', {
                     required: 'Image URL is required',
                   })}
@@ -251,12 +251,12 @@ const UpdateMeal = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 {/* Price */}
                 <div>
-                  <label className="label mb-2">Price ($)</label>
+                  <label className="label mb-2 text-[#ABB6C8]">Price ($)</label>
                   <input
                     type="number"
                     step="0.01"
                     placeholder="12.99"
-                    className="input input-bordered w-full focus:outline-none focus:border-2"
+                    className="input input-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                     style={{
                       borderColor: errors.price ? '#ef4444' : '#e5e7eb',
                     }}
@@ -279,11 +279,11 @@ const UpdateMeal = () => {
 
                 {/* Estimated Delivery Time */}
                 <div>
-                  <label className="label mb-2">Delivery Time</label>
+                  <label className="label mb-2 text-[#ABB6C8]">Delivery Time</label>
                   <input
                     type="text"
                     placeholder="e.g., 30 minutes"
-                    className="input input-bordered w-full focus:outline-none focus:border-2"
+                    className="input input-bordered w-full focus:outline-none focus:border-2border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                     {...register('estimatedDeliveryTime', {
                       required: 'Delivery time is required',
                     })}
@@ -300,7 +300,7 @@ const UpdateMeal = () => {
 
               {/* Ingredients */}
               <div className="mb-6">
-                <label className="label mb-2">Ingredients</label>
+                <label className="label mb-2 text-[#ABB6C8]">Ingredients</label>
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -308,12 +308,12 @@ const UpdateMeal = () => {
                     onChange={(e) => setCurrentIngredient(e.target.value)}
                     onKeyPress={handleIngredientKeyPress}
                     placeholder="Add an ingredient and press Enter or click Add"
-                    className="input input-bordered flex-1 focus:outline-none focus:border-2"
+                    className="input input-bordered flex-1 focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   />
                   <button
                     type="button"
                     onClick={addIngredient}
-                    className="btn text-white border-0 bg-secondary"
+                    className="btn text-white border-0 bg-secondary shadow-none"
                   >
                     <IoMdAdd className="w-5 h-5" />
                     Add
@@ -326,7 +326,7 @@ const UpdateMeal = () => {
                     {ingredients.map((ingredient, index) => (
                       <div
                         key={index}
-                        className="badge badge-lg gap-2 py-3 px-4 bg-secondary text-primary"
+                        className="badge badge-lg gap-2 py-3 px-4 bg-secondary text-primary shadow-none border-0"
                       >
                         <span>{ingredient}</span>
                         <button
@@ -344,10 +344,10 @@ const UpdateMeal = () => {
 
               {/* Chef Experience */}
               <div className="mb-8">
-                <label className="label mb-2">Chef Experience</label>
+                <label className="label mb-2 text-[#ABB6C8]">Chef Experience</label>
                 <textarea
                   placeholder="e.g., 5 years of experience in Mediterranean cuisine"
-                  className="textarea textarea-bordered h-24 w-full focus:outline-none focus:border-2"
+                  className="textarea textarea-bordered h-24 w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   {...register('chefExperience', {
                     required: 'Chef experience is required',
                   })}
@@ -366,7 +366,7 @@ const UpdateMeal = () => {
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="btn btn-lg flex-1 font-semibold"
+                  className="btn btn-lg flex-1 font-semibold bg-[#131A27] text-white shadow-none border border-white"
                   disabled={isSubmitting}
                 >
                   Cancel
@@ -375,7 +375,7 @@ const UpdateMeal = () => {
                   type="button"
                   onClick={handleFormSubmit}
                   disabled={isSubmitting}
-                  className="btn btn-lg bg-primary flex-1 text-white font-semibold text-base border-0 hover:opacity-90"
+                  className="btn btn-lg bg-primary flex-1 text-white font-semibold text-base border border-white hover:opacity-90 shadow-none"
                 >
                   {isSubmitting ? (
                     <>

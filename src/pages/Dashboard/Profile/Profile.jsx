@@ -184,11 +184,11 @@ const Profile = () => {
           </h1>
         </div>
 
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-primary shadow-xl">
           <div className="card-body p-6 sm:p-8">
-            <div className="flex flex-col sm:flex-row items-center gap-6 mb-6 pb-6 border-b border-base-300">
+            <div className="flex flex-col sm:flex-row items-center gap-6 mb-6 pb-6 border-b border-white/50">
               <div className="avatar">
-                <div className="w-32 h-32 rounded-full ring ring-offset-base-100 ring-offset-2 ring-secondary border-secondary border-2">
+                <div className="w-32 h-32 rounded-full ring ring-offset-black ring-offset-2 ring-secondary border-secondary border-2">
                   <img
                     src={userInfo?.photoURL}
                     alt={userInfo?.name}
@@ -203,7 +203,7 @@ const Profile = () => {
                 </h2>
                 <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                   <span
-                    className={`badge ${roleBadge.class}`}
+                    className={`badge border-0 ${roleBadge.class}`}
                     style={roleBadge.style}
                   >
                     {userInfo?.role?.toUpperCase()}
@@ -216,10 +216,10 @@ const Profile = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-base-200/50 hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-[#131A27] hover:shadow-md transition-shadow">
                 <MdEmail className="w-6 h-6 mt-1 shrink-0 text-secondary" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-base-content/70 mb-1 font-medium">
+                  <p className="text-sm text-[#ABB6C8] mb-1 font-medium">
                     Email
                   </p>
                   <p className="font-semibold break-all text-white">
@@ -228,10 +228,10 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-base-200/50 hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-[#131A27] hover:shadow-md transition-shadow">
                 <MdLocationOn className="w-6 h-6 mt-1 shrink-0 text-secondary" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-base-content/70 mb-1 font-medium">
+                  <p className="text-sm text-[#ABB6C8] mb-1 font-medium">
                     Address
                   </p>
                   <p className="font-semibold text-white">
@@ -240,10 +240,10 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-base-200/50 hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-[#131A27] hover:shadow-md transition-shadow">
                 <MdPerson className="w-6 h-6 mt-1 shrink-0 text-secondary" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-base-content/70 mb-1 font-medium">
+                  <p className="text-sm text-[#ABB6C8] mb-1 font-medium">
                     Role
                   </p>
                   <p className="font-semibold capitalize text-white">
@@ -252,10 +252,10 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-base-200/50 hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-[#131A27] hover:shadow-md transition-shadow">
                 <MdVerifiedUser className="w-6 h-6 mt-1 shrink-0 text-secondary" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-base-content/70 mb-1 font-medium">
+                  <p className="text-sm text-[#ABB6C8] mb-1 font-medium">
                     Status
                   </p>
                   <p className="font-semibold capitalize text-white">
@@ -265,10 +265,10 @@ const Profile = () => {
               </div>
 
               {userInfo?.role === 'chef' && (
-                <div className="flex items-start gap-3 p-4 rounded-lg bg-base-200/50 md:col-span-2 hover:shadow-md transition-shadow">
+                <div className="flex items-start gap-3 p-4 rounded-lg bg-[#131A27] md:col-span-2 hover:shadow-md transition-shadow">
                   <FaHashtag className="w-6 h-6 mt-1 shrink-0 text-secondary" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-base-content/70 mb-1 font-medium">
+                    <p className="text-sm text-[#ABB6C8] mb-1 font-medium">
                       Chef ID
                     </p>
                     <p className="font-semibold font-mono text-white">
@@ -280,11 +280,11 @@ const Profile = () => {
             </div>
 
             {userInfo?.role !== 'admin' && (
-              <div className="flex flex-col sm:flex-row gap-3 mt-8 pt-6 border-t border-base-300">
+              <div className="flex flex-col sm:flex-row gap-3 mt-8 pt-6 border-t border-white/50">
                 {userInfo?.role !== 'chef' && (
                   <button
                     onClick={handleBeChef}
-                    className="btn flex-1 text-white font-semibold hover:opacity-90 transition-opacity border-0 bg-secondary"
+                    className="btn flex-1 shadow text-white font-semibold hover:opacity-90 transition-opacity border border-white bg-secondary"
                     disabled={chef}
                   >
                     <MdRestaurant className="w-5 h-5" />
@@ -294,7 +294,7 @@ const Profile = () => {
 
                 <button
                   onClick={handleBeAdmin}
-                  className="btn bg-primary flex-1 text-white font-semibold hover:opacity-90 transition-opacity border-0"
+                  className="btn bg-primary shadow flex-1 text-white font-semibold hover:opacity-90 transition-opacity border border-white"
                   disabled={admin}
                 >
                   <MdAdminPanelSettings className="w-5 h-5" />

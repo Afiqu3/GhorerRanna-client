@@ -168,28 +168,30 @@ const CreateMeal = () => {
           </div>
         </div>
 
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-primary shadow-xl">
           <div className="card-body p-6 sm:p-8">
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* Food Name */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label className="label mb-2">User Email</label>
+                  <label className="label mb-2 text-[#ABB6C8]">
+                    User Email
+                  </label>
                   <input
                     type="text"
                     value={user?.email}
                     placeholder="User Email"
-                    className="input input-bordered w-full focus:outline-none focus:border-2 cursor-not-allowed"
+                    className="input input-bordered border-0 w-full focus:outline-none focus:border-2 cursor-not-allowed bg-[#131A27] text-[#ABB6C8] focus:border-white"
                     disabled
                   />
                 </div>
                 <div>
-                  <label className="label mb-2">Chef ID</label>
+                  <label className="label mb-2 text-[#ABB6C8]">Chef ID</label>
                   <input
                     type="text"
                     value={userInfo?.chefId}
                     placeholder="chef id"
-                    className="input input-bordered w-full focus:outline-none focus:border-2 cursor-not-allowed"
+                    className="input input-bordered w-full focus:outline-none focus:border-2 cursor-not-allowed border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                     disabled
                   />
                 </div>
@@ -198,21 +200,21 @@ const CreateMeal = () => {
               {/* Food Name */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label className="label mb-2">Chef Name</label>
+                  <label className="label mb-2 text-[#ABB6C8]">Chef Name</label>
                   <input
                     type="text"
                     value={userInfo.displayName}
                     placeholder="Name"
-                    className="input input-bordered w-full focus:outline-none focus:border-2 cursor-not-allowed"
+                    className="input input-bordered w-full focus:outline-none focus:border-2 cursor-not-allowed border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                     disabled
                   />
                 </div>
                 <div>
-                  <label className="label mb-2">Food Name</label>
+                  <label className="label mb-2 text-[#ABB6C8]">Food Name</label>
                   <input
                     type="text"
                     placeholder="e.g., Grilled Chicken Salad"
-                    className="input input-bordered w-full focus:outline-none focus:border-2"
+                    className="input input-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                     {...register('foodName', {
                       required: 'Food name is required',
                     })}
@@ -229,11 +231,11 @@ const CreateMeal = () => {
 
               {/* Delivery Area */}
               <div className="mb-6">
-                <label className="label mb-2">Delivery Area</label>
+                <label className="label mb-2 text-[#ABB6C8]">Delivery Area</label>
                 <input
                   type="text"
                   placeholder="e.g., Dhaka"
-                  className="input input-bordered w-full focus:outline-none focus:border-2"
+                  className="input input-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   {...register('deliveryArea', {
                     required: 'Delivery Area',
                   })}
@@ -249,12 +251,12 @@ const CreateMeal = () => {
 
               {/* Food Image */}
               <div className="mb-6">
-                <label className="label mb-2">Food Image</label>
+                <label className="label mb-2 text-[#ABB6C8]">Food Image</label>
 
                 <input
                   type="file"
                   {...register('foodImage', { required: true })}
-                  className="file-input w-full focus:border-transparent"
+                  className="file-input file-input-secondary w-full focus:outline-0 focus:border-white focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8]"
                   placeholder="Food Image"
                 />
 
@@ -295,12 +297,12 @@ const CreateMeal = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 {/* Price */}
                 <div>
-                  <label className="label mb-2">Price ($)</label>
+                  <label className="label mb-2 text-[#ABB6C8]">Price ($)</label>
                   <input
                     type="number"
                     step="0.01"
                     placeholder="12.99"
-                    className="input input-bordered w-full focus:outline-none focus:border-2"
+                    className="input input-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                     {...register('price', {
                       required: 'Price is required',
                       min: {
@@ -320,11 +322,11 @@ const CreateMeal = () => {
 
                 {/* Estimated Delivery Time */}
                 <div>
-                  <label className="label mb-2">Delivery Time</label>
+                  <label className="label mb-2 text-[#ABB6C8]">Delivery Time</label>
                   <input
                     type="text"
                     placeholder="e.g., 30 minutes"
-                    className="input input-bordered w-full focus:outline-none focus:border-2"
+                    className="input input-bordered w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                     {...register('estimatedDeliveryTime', {
                       required: 'Delivery time is required',
                     })}
@@ -341,7 +343,7 @@ const CreateMeal = () => {
 
               {/* Ingredients */}
               <div className="mb-6">
-                <label className="label mb-2">Ingredients</label>
+                <label className="label mb-2 text-[#ABB6C8]">Ingredients</label>
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -349,12 +351,12 @@ const CreateMeal = () => {
                     onChange={(e) => setCurrentIngredient(e.target.value)}
                     onKeyPress={handleIngredientKeyPress}
                     placeholder="Add an ingredient and press Enter or click Add"
-                    className="input input-bordered flex-1 focus:outline-none focus:border-2"
+                    className="input input-bordered flex-1 focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   />
                   <button
                     type="button"
                     onClick={addIngredient}
-                    className="btn text-white border-0 bg-secondary"
+                    className="btn text-white border-0 bg-secondary shadow-none"
                   >
                     <IoMdAdd className="w-5 h-5" />
                     Add
@@ -367,7 +369,7 @@ const CreateMeal = () => {
                     {ingredients.map((ingredient, index) => (
                       <div
                         key={index}
-                        className="badge badge-lg gap-2 py-3 px-4 bg-secondary text-primary"
+                        className="badge badge-lg gap-2 py-3 px-4 bg-secondary text-primary border-0"
                       >
                         <span>{ingredient}</span>
                         <button
@@ -385,10 +387,10 @@ const CreateMeal = () => {
 
               {/* Chef Experience */}
               <div className="mb-8">
-                <label className="label mb-2">Chef Experience</label>
+                <label className="label mb-2 text-[#ABB6C8]">Chef Experience</label>
                 <textarea
                   placeholder="e.g., 5 years of experience in Mediterranean cuisine"
-                  className="textarea textarea-bordered h-24 w-full focus:outline-none focus:border-2"
+                  className="textarea textarea-bordered h-24 w-full focus:outline-none focus:border-2 border-0 bg-[#131A27] text-[#ABB6C8] focus:border-white"
                   {...register('chefExperience', {
                     required: 'Chef experience is required',
                   })}
@@ -407,7 +409,7 @@ const CreateMeal = () => {
                 <button
                   type="button"
                   onClick={handleFormSubmit}
-                  className="btn bg-secondary text-primary font-semibold hover:bg-[#ffb73a] transition-all w-full"
+                  className="btn bg-secondary text-primary font-semibold hover:bg-[#ffb73a] transition-all w-full shadow-none border-0"
                 >
                   Create Meal
                 </button>
