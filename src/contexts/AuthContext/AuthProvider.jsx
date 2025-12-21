@@ -51,10 +51,10 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) {
         const loggedUser = { email: currentUser.email };
-        fetch(`http://localhost:3000/getToken`, {
-          method: "POST",
+        fetch(`https://ghorerranna-server-api.vercel.app/getToken`, {
+          method: 'POST',
           headers: {
-            "content-type": "application/json",
+            'content-type': 'application/json',
           },
           body: JSON.stringify(loggedUser),
         })
@@ -62,8 +62,7 @@ const AuthProvider = ({ children }) => {
           .then((data) => {
             localStorage.setItem('Token', data.token);
           });
-      }
-      else {
+      } else {
         localStorage.removeItem('Token');
       }
       setTimeout(() => {
