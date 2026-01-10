@@ -117,7 +117,6 @@ const Navbar = () => {
       });
   };
 
-
   return (
     <section className="flex justify-center">
       <div
@@ -436,7 +435,7 @@ const Navbar = () => {
 
         {/*  mobile and tab */}
         {isOpen && !user && (
-          <div className="lg:hidden mt-2 mb-5 ml-10 space-y-3 max-w-45 relative h-25">
+          <div className="lg:hidden mt-2 mb-5 ml-10 space-y-3 max-w-45 relative h-55">
             <ul className={`space-y-3 animation`}>{links}</ul>
             <motion.div
               initial={{ opacity: 0, y: -15 }}

@@ -16,6 +16,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { createUser, updateUser } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -25,6 +26,7 @@ const Register = () => {
   const password = useWatch({ control, name: 'password' });
 
   const handleRegistration = (data) => {
+    setIsLoading(true);
     // console.log(data);
     // console.log('after register', data.photo[0]);
     const profileImg = data.photo[0];
@@ -110,7 +112,7 @@ const Register = () => {
         className="space-y-4 mt-3"
         onSubmit={handleSubmit(handleRegistration)}
       >
-        <fieldset className="fieldset">
+        <fieldset className="fieldset" disabled={isLoading}>
           {/* name field */}
           <label className="label">Name</label>
           <input
@@ -118,6 +120,7 @@ const Register = () => {
             {...register('name', { required: true })}
             className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
             placeholder="Your Name"
+            disabled={isLoading}
           />
           {errors.name?.type === 'required' && (
             <p className="text-red-500">Name is required.</p>
@@ -130,6 +133,7 @@ const Register = () => {
             {...register('address', { required: true })}
             className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
             placeholder="Your address"
+            disabled={isLoading}
           />
           {errors.address?.type === 'required' && (
             <p className="text-red-500">Address is required.</p>
@@ -143,6 +147,7 @@ const Register = () => {
             {...register('photo', { required: true })}
             className="file-input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
             placeholder="Your Photo"
+            disabled={isLoading}
           />
 
           {errors.photo?.type === 'required' && (
@@ -156,6 +161,7 @@ const Register = () => {
             {...register('email', { required: true })}
             className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
             placeholder="Email"
+            disabled={isLoading}
           />
           {errors.email?.type === 'required' && (
             <p className="text-red-500">Email is required.</p>
@@ -173,6 +179,7 @@ const Register = () => {
               })}
               className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
               placeholder="Password"
+              disabled={isLoading}
             />
             <span
               onClick={handleTogglePassword}
@@ -213,6 +220,7 @@ const Register = () => {
               })}
               className="input w-full focus:outline-0 border-[#999D93] focus:border-white bg-[#1D232A] text-white"
               placeholder="Confirm Password"
+              disabled={isLoading}
             />
             <span
               onClick={handleToggleConfirmPassword}
@@ -232,8 +240,18 @@ const Register = () => {
             )}
           </div>
 
-          <button className="btn border-0 shadow-none outline-none bg-secondary text-primary font-semibold hover:bg-[#ffb73a] transition-all mt-4">
-            Register
+          <button
+            className="btn border-0 shadow-none outline-none bg-secondary text-primary font-semibold hover:bg-[#ffb73a] transition-all mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="loading loading-spinner loading-sm"></span>
+                Registering
+              </>
+            ) : (
+              'Register'
+            )}
           </button>
         </fieldset>
         <p>
