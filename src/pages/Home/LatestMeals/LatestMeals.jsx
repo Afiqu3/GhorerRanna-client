@@ -111,7 +111,7 @@ const LatestMeals = () => {
           <div className="h-0.5 bg-secondary w-30"></div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3">
           {latestMeals.map((meal, index) => (
             <motion.div
               key={index}
@@ -125,7 +125,7 @@ const LatestMeals = () => {
                 y: 0,
                 scale: 1,
               }}
-              viewport={{ amount: 0.3 }}
+              viewport={{ amount: 0.3,once: true }}
               transition={{
                 duration: 0.6,
                 delay: index * 0.1,

@@ -27,6 +27,7 @@ import ChefRouter from './ChefRouter';
 import AdminRouter from './AdminRouter';
 import ActiveRouter from './ActiveRouter';
 import UserRouter from './UserRouter';
+import OurServices from '../pages/OurServices/OurServices';
 
 export const router = createBrowserRouter([
   {
@@ -42,12 +43,12 @@ export const router = createBrowserRouter([
         Component: Meals,
       },
       {
+        path: 'services',
+        Component: OurServices,
+      },
+      {
         path: 'mealDetails/:mealId',
-        element: (
-          <PrivateRouter>
-            <MealDetails></MealDetails>
-          </PrivateRouter>
-        ),
+        element: <MealDetails></MealDetails>,
       },
       {
         path: 'order/:mealId',

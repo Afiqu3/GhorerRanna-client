@@ -139,7 +139,7 @@ const Meals = () => {
           </div>
         ) : (
           /* Meals Grid */
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3">
             {meals.map((meal, index) => (
               <motion.div
                 key={meal._id}
@@ -153,7 +153,7 @@ const Meals = () => {
                   y: 0,
                   scale: 1,
                 }}
-                viewport={{ amount: 0.2 }}
+                viewport={{ amount: 0.2, once: true }}
                 transition={{
                   duration: 0.6,
                   delay: index * 0.1,

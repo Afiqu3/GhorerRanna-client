@@ -20,7 +20,11 @@ const CTA = () => {
         >
           Still have questions?
         </h3>
-        <p className="text-primary mb-6 max-w-2xl mx-auto">
+        <p
+          className={`${
+            theme === 'dark' ? '' : 'text-primary'
+          } mb-6 max-w-2xl mx-auto `}
+        >
           Our support team is here to help! Reach out to us and we'll get back
           to you as soon as possible.
         </p>

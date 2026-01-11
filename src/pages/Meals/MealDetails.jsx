@@ -56,7 +56,6 @@ const MealDetails = () => {
         setLoading(false);
       }
     };
-
     const fetchReviews = async () => {
       try {
         const response = await axiosSecure.get(`/reviews/meal/${mealId}`);
@@ -65,22 +64,23 @@ const MealDetails = () => {
         console.error('Error fetching reviews:', error);
       }
     };
-
-    const checkIsFavorite = async () => {
-      try {
-        const response = await axiosSecure.get(
-          `/favoritesCheck?mealId=${mealId}&email=${user.email}`
-        );
-        setIsFavorite(response.data.favorite);
-      } catch (error) {
-        console.error('Error checking favorite status:', error);
-      }
-    };
-
-    checkIsFavorite();
-
     fetchMealData();
     fetchReviews();
+
+    if (user) {
+      const checkIsFavorite = async () => {
+        try {
+          const response = await axiosSecure.get(
+            `/favoritesCheck?mealId=${mealId}&email=${user.email}`
+          );
+          setIsFavorite(response.data.favorite);
+        } catch (error) {
+          console.error('Error checking favorite status:', error);
+        }
+      };
+
+      checkIsFavorite();
+    }
   }, [mealId, axiosSecure, user]);
 
   const handleAddToFavorites = async () => {
@@ -227,20 +227,22 @@ const MealDetails = () => {
                 >
                   {meal.foodName}
                 </h1>
-                <button
-                  onClick={handleAddToFavorites}
-                  className={`btn btn-circle btn-lg bg-secondary ${
-                    isFavorite
-                      ? 'bg-secondary text-white'
-                      : 'bg-transparent text-secondary'
-                  }`}
-                >
-                  {isFavorite ? (
-                    <FaHeart className="w-6 h-6" />
-                  ) : (
-                    <FaRegHeart className="w-6 h-6" />
-                  )}
-                </button>
+                {user && (
+                  <button
+                    onClick={handleAddToFavorites}
+                    className={`btn btn-circle btn-lg bg-secondary ${
+                      isFavorite
+                        ? 'bg-secondary text-white'
+                        : 'bg-transparent text-secondary'
+                    }`}
+                  >
+                    {isFavorite ? (
+                      <FaHeart className="w-6 h-6" />
+                    ) : (
+                      <FaRegHeart className="w-6 h-6" />
+                    )}
+                  </button>
+                )}
               </div>
 
               {/* Rating */}
@@ -336,13 +338,15 @@ const MealDetails = () => {
               </div>
 
               {/* Order Button */}
-              <button
-                onClick={handleOrderNow}
-                className="btn btn-lg w-full text-white font-semibold text-base border-0 bg-primary"
-              >
-                <FaUtensils className="w-5 h-5" />
-                Order Now
-              </button>
+              {user && (
+                <button
+                  onClick={handleOrderNow}
+                  className="btn btn-lg w-full text-white font-semibold text-base border-0 bg-primary"
+                >
+                  <FaUtensils className="w-5 h-5" />
+                  Order Now
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -398,12 +402,14 @@ const MealDetails = () => {
                 <BiSolidQuoteAltLeft className="w-6 h-6" color="#FEA116" />
                 Reviews ({reviews.length})
               </h2>
-              <button
-                onClick={() => setShowReviewForm(!showReviewForm)}
-                className="btn text-white font-semibold border-0 bg-secondary"
-              >
-                {showReviewForm ? 'Cancel' : 'Give Review'}
-              </button>
+              {user && (
+                <button
+                  onClick={() => setShowReviewForm(!showReviewForm)}
+                  className="btn text-white font-semibold border-0 bg-secondary"
+                >
+                  {showReviewForm ? 'Cancel' : 'Give Review'}
+                </button>
+              )}
             </div>
 
             {/* Review Form */}

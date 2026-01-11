@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import {
+  FaEye,
+  FaEyeSlash,
+  FaUserShield,
+  FaUserTie,
+  FaUser,
+} from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import useAuth from '../../../hooks/useAuth';
@@ -10,6 +16,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
@@ -17,6 +24,22 @@ const Login = () => {
   const { signInUser, setLoading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Demo credentials
+  const demoCredentials = {
+    admin: {
+      email: 'admin@admin.com',
+      password: '1234A@a',
+    },
+    chef: {
+      email: 'admin1@admin.com',
+      password: '1234A@a',
+    },
+    user: {
+      email: 'admin2@admin.com',
+      password: '1234A@a',
+    },
+  };
 
   const handleLogin = async (data) => {
     setIsLoading(true);
@@ -80,6 +103,18 @@ const Login = () => {
     }
   };
 
+  const handleDemoLogin = (role) => {
+    const credentials = demoCredentials[role];
+    setValue('email', credentials.email);
+    setValue('password', credentials.password);
+
+    toast.info(`Demo ${role} credentials loaded. Click Login to continue.`, {
+      position: 'top-center',
+      autoClose: 2000,
+      theme: 'dark',
+    });
+  };
+
   const handleTogglePassword = (e) => {
     e.preventDefault();
     setShowPassword((prev) => !prev);
@@ -92,7 +127,47 @@ const Login = () => {
       <p className="text-white">
         Login with <span className="text-secondary">GhorerRanna</span>
       </p>
-      <form className="space-y-4 mt-3" onSubmit={handleSubmit(handleLogin)}>
+
+      {/* Demo Login Buttons */}
+      <div className="mt-4 mb-6">
+        <p className="text-sm text-gray-400 mb-3 text-center">
+          Quick Demo Login:
+        </p>
+        <div className="grid grid-cols-3 gap-2">
+          <button
+            type="button"
+            onClick={() => handleDemoLogin('admin')}
+            disabled={isLoading}
+            className="btn btn-sm bg-primary hover:bg-primary/80 text-white border-0 disabled:opacity-50"
+            title="Login as Admin"
+          >
+            <FaUserShield className="w-4 h-4" />
+            <span className="hidden sm:inline">Admin</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => handleDemoLogin('chef')}
+            disabled={isLoading}
+            className="btn btn-sm bg-secondary hover:bg-secondary/80 text-primary border-0 disabled:opacity-50"
+            title="Login as Chef"
+          >
+            <FaUserTie className="w-4 h-4" />
+            <span className="hidden sm:inline">Chef</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => handleDemoLogin('user')}
+            disabled={isLoading}
+            className="btn btn-sm bg-blue-600 hover:bg-blue-700 text-white border-0 disabled:opacity-50"
+            title="Login as User"
+          >
+            <FaUser className="w-4 h-4" />
+            <span className="hidden sm:inline">User</span>
+          </button>
+        </div>
+      </div>
+
+      <form className="space-y-4" onSubmit={handleSubmit(handleLogin)}>
         <fieldset className="fieldset" disabled={isLoading}>
           {/* Email field */}
           <div className="form-control">

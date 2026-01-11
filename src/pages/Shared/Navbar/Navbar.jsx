@@ -22,9 +22,14 @@ const navigationData = [
     id: 1,
   },
   {
+    name: 'Services',
+    path: '/services',
+    id: 2,
+  },
+  {
     name: 'Meals',
     path: '/meals',
-    id: 2,
+    id: 3,
   },
   // {
   //   name: "Register",
@@ -42,7 +47,7 @@ const privateNavigationData = [
   {
     name: 'My Dashboard',
     path: '/dashboard',
-    id: 3,
+    id: 4,
   },
   // {
   //   name: 'My Added Jobs',

@@ -30,22 +30,15 @@ const Footer = () => {
 
   const quickLinks = [
     ['Home', '/'],
-    ['Chefs', '/chefs'],
-    ['Menu', '/menu'],
-    ['Track Order', '/track'],
-  ];
-
-  const supportLinks = [
-    ['About Us', '/about'],
-    ['FAQ', '/faq'],
-    ['Contact', '/contact'],
-    ['Privacy Policy', '/privacy'],
+    ['Login', '/login'],
+    ['Menu', '/meals'],
+    ['Services', '/services'],
   ];
 
   return (
     <footer className="relative bg-primary text-gray-300 pt-15 border-t border-white/10 sm:[clip-path:polygon(0_0%,100%_25%,100%_100%,0_100%)] [clip-path:polygon(0_0%,100%_15%,100%_100%,0_100%)]">
       <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand Section */}
           <motion.div
             className="col-span-1 lg:col-span-2"
@@ -108,7 +101,7 @@ const Footer = () => {
           </motion.div>
 
           {/* Support */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -123,7 +116,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.div> */}
 
           {/* Contact & Hours */}
           <motion.div
@@ -134,15 +127,15 @@ const Footer = () => {
             <h4 className="text-white font-semibold mb-3">Contact Us</h4>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
-                <FaPhoneAlt className="w-4 h-4 text-secondary" />
-                <span>+880 1400 000 000</span>
+                <FaPhoneAlt size={15} className="text-secondary" />
+                <span>+880 1703560778</span>
               </li>
               <li className="flex items-center gap-2">
-                <IoMail className="w-4 h-4 text-secondary" />
-                <span>gr@gmail.com</span>
+                <IoMail size={15} className="text-secondary" />
+                <span>afiquehossain84@gmail.com</span>
               </li>
               <li className="flex items-center gap-2">
-                <FaMapMarkerAlt className="w-4 h-4 text-secondary" />
+                <FaMapMarkerAlt size={15} className="text-secondary" />
                 <span>Dhaka, Bangladesh</span>
               </li>
             </ul>
@@ -152,7 +145,7 @@ const Footer = () => {
             </h4>
             <p className="text-xs text-gray-400 leading-5">
               Sat - Thu: 10:00 AM - 10:00 PM <br />
-              Friday: Closed (Family Day)
+              Friday: Closed
             </p>
           </motion.div>
         </div>
